@@ -19,8 +19,9 @@
 > The included `install.sh` script is **EXPERIMENTAL** and highly opinionated. It is designed for fresh CachyOS / KDE installations and will aggressively modify configurations in your home directory. **It is not recommended to run this on an existing setup.** Please review the script manually before execution!
 
 ```bash
-git clone https://github.com/Den1zzDev/Den1zzfiles.git ~/.dotfiles
-cd ~/.dotfiles
+cd ~/.config
+git clone https://github.com/Den1zzDev/Den1zzfiles.git
+cd Den1zzfiles
 ./install.sh
 ```
 
