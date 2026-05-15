@@ -4,8 +4,8 @@
 
 *A curated collection of personal dotfiles & system configurations*
 
-[![Niri](https://img.shields.io/badge/WM-Niri-cba6f7?style=flat-square&logo=wayland&logoColor=white)](https://github.com/YaLTeR/niri)
-[![Fish](https://img.shields.io/badge/Shell-Fish-89b4fa?style=flat-square&logo=fish&logoColor=white)](https://fishshell.com)
+[![KDE](https://img.shields.io/badge/DE-KDE_Plasma-5c91cf?style=flat-square&logo=kde&logoColor=white)](https://kde.org)
+[![Shell](https://img.shields.io/badge/Shell-Fish_%2F_Oksh-89b4fa?style=flat-square&logo=gnu-bash&logoColor=white)](https://fishshell.com)
 [![Ghostty](https://img.shields.io/badge/Terminal-Ghostty-a6e3a1?style=flat-square)](https://ghostty.org)
 [![Catppuccin](https://img.shields.io/badge/Theme-Catppuccin-f5c2e7?style=flat-square)](https://catppuccin.com)
 
@@ -13,38 +13,48 @@
 
 ---
 
+## 🚀 Installation
+
+> [!WARNING]
+> The included `install.sh` script is **EXPERIMENTAL** and highly opinionated. It is designed for fresh CachyOS / KDE installations and will aggressively modify configurations in your home directory. **It is not recommended to run this on an existing setup.** Please review the script manually before execution!
+
+```bash
+cd ~/.config
+git clone https://github.com/Den1zzDev/Den1zzfiles.git
+cd Den1zzfiles
+./install.sh
+```
+
+---
+
 ## 🛠️ Included Configurations
 
 | Component | Choice | Notes |
 |-----------|--------|-------|
-| **Window Manager** | [Niri](https://github.com/YaLTeR/niri) | Split modular configs |
-| **Shell** | Fish | Atuin · zoxide · fzf integrations |
+| **Desktop Environment** | [KDE Plasma](https://kde.org) | Wayland |
+| **Shell** | Fish / Oksh | Atuin · zoxide · fzf integrations |
 | **Prompt** | Starship | Catppuccin styling |
 | **Terminal** | Ghostty | — |
 | **Editor** | Zed / Micro | — |
-| **UI / Theming** | Noctalia Shell | GTK 3.0 & 4.0 |
+| **UI / Theming** | [Catppuccin KDE](https://github.com/catppuccin/kde) | KDE Plasma theming |
 
 ---
 
-## 🎮 Deadlock — QOL Mod
+## 🐚 Shell Comparison — Fish vs Oksh
 
-> My personal import code for the **[Deadlock QOL Mod](https://gamebanana.com/mods/650634)** by its author [civo on GameBanana](https://gamebanana.com/members/5146349).  
-> All credit goes to the mod creators this is just my config string for it.
+Both shells are configured and ready to use. Pick whichever fits your workflow.
 
-```
-[QOL-2-3-2]:AigUSxQjZMhMDm8lk6mhZCADl4clKBS4R0EGEJKiYWVkZI5YQjZiCRlkAKBQwhg
-ggwygjCAcWFoyAiejy8HjgSWWYIklMg8yZwEYACAZZMiUkSGToeQDA0aGJZkMtw
-```
-
-<details>
-<summary>How to import</summary>
-
-1. Install the mod from **[GameBanana ↗](https://gamebanana.com/mods/650634)**
-2. Open **Deadlock** and navigate to the mod's config screen
-3. Paste the full code string above
-4. Apply and enjoy the QOL improvements
-
-</details>
+| | [Fish](https://fishshell.com) | [Oksh](https://github.com/ibara/oksh) |
+|---|---|---|
+| **Philosophy** | Friendly & feature-rich out of the box | Minimal & POSIX-compliant |
+| **Syntax** | Custom (not POSIX) | POSIX sh / ksh |
+| **Autosuggestions** | ✅ Built-in | ❌ |
+| **Syntax highlighting** | ✅ Built-in | ❌ |
+| **Tab completions** | ✅ Extensive | Basic |
+| **Scripting** | Own syntax — not portable | POSIX — portable everywhere |
+| **Startup speed** | Fast | Faster |
+| **Resource usage** | Moderate | Very light |
+| **Best for** | Daily interactive use | Lightweight sessions, scripting, POSIX compatibility |
 
 ---
 
@@ -56,13 +66,13 @@ These configs are built on the shoulders of a bunch of great open-source project
 
 | Project | What it does |
 |---------|-------------|
-| [Niri](https://github.com/YaLTeR/niri) | Scrollable-tiling Wayland compositor |
-| [Fish Shell](https://fishshell.com) | The friendly interactive shell |
+| [KDE Plasma](https://kde.org) | Powerful and customizable desktop environment |
+| [Fish Shell](https://fishshell.com) / [Oksh](https://github.com/ibara/oksh) | Fish for interactive use, Oksh for lightweight POSIX compliance |
 | [Starship](https://starship.rs) | Cross-shell prompt |
 | [Ghostty](https://ghostty.org) | Fast, native terminal emulator |
 | [Zed](https://zed.dev) | High-performance code editor |
 | [Micro](https://micro-editor.github.io) | Modern terminal text editor |
-| [Noctalia Shell](https://github.com/Fausto-Korpsvart/Noctalia-GTK-Theme) | GTK theme |
+| [Catppuccin KDE](https://github.com/catppuccin/kde) | Soothing pastel theme for KDE Plasma |
 | [Catppuccin](https://catppuccin.com) | Soothing pastel color scheme (used everywhere) |
 
 ### 🔧 CLI Toolchain
@@ -87,14 +97,6 @@ These configs are built on the shoulders of a bunch of great open-source project
 |---------|-------------|
 | [streamlink](https://streamlink.github.io) | Extracts streams from sites like Twitch |
 | [mpv](https://mpv.io) | Minimal, powerful media player |
-
-### 🎮 Gaming
-
-| Project | What it does |
-|---------|-------------|
-| [Deadlock QOL Mod](https://gamebanana.com/mods/650634) by **Civo** | Quality-of-life improvements for Deadlock |
-
----
 
 <div align="center">
 
