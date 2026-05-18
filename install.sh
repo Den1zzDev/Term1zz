@@ -85,7 +85,7 @@ done
 
 if [ ${#PACMAN_PKGS[@]} -gt 0 ]; then
     echo "Installing official repository packages using pacman..."
-    run0 pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"
+    run0 --background="" pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"
 fi
 
 if [ ${#AUR_PKGS[@]} -gt 0 ]; then
