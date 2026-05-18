@@ -328,7 +328,7 @@ if status is-interactive
     abbr ports  "ss -tulnp"
     abbr myip   "curl -s ifconfig.me"
     abbr weather "curl -s wttr.in"
-    abbr speedtest "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -"
+    abbr speedtest "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 - --secure"
 
     # =========================================
     # USEFUL FUNCTIONS (inline)
