@@ -20,7 +20,7 @@
 
 ```bash
 cd ~/.config
-git clone https://github.com/Den1zzDev/Den1zzfiles.git
+git clone https://codeberg.org/Den1zz/Den1zzfiles
 cd Den1zzfiles
 ./install.sh
 ```
