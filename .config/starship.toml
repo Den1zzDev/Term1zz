@@ -1,14 +1,14 @@
 # ── Prompt layout ───────────────────────────────────────────────
 format = """
-[](fg:#1e1e2e)\
+[](fg:#303446)\
 $os\
 $username\
-[](bg:#313244 fg:#1e1e2e)\
+[](bg:#414559 fg:#303446)\
 $directory\
-[](fg:#313244 bg:#45475a)\
+[](fg:#414559 bg:#51576d)\
 $git_branch\
 $git_status\
-[](fg:#45475a bg:#1e1e2e)\
+[](fg:#51576d bg:#303446)\
 $nodejs\
 $python\
 $rust\
@@ -29,7 +29,7 @@ $scala\
 $swift\
 $zig\
 $docker_context\
-[](fg:#1e1e2e)\
+[](fg:#303446)\
 $fill\
 $cmd_duration\
 $time\
@@ -43,7 +43,7 @@ symbol = " "
 # ── OS icon ─────────────────────────────────────────────────────
 [os]
 disabled = false
-style = "bg:#1e1e2e fg:#cba6f7"    # mauve
+style = "bg:#303446 fg:#ca9ee6"    # mauve
 
 [os.symbols]
 Alpine = " "
@@ -86,18 +86,18 @@ Windows = "󰍲 "
 # ── Username ─────────────────────────────────────────────────────
 [username]
 show_always  = true
-style_user   = "bg:#1e1e2e fg:#89b4fa bold"   # blue
-style_root   = "bg:#1e1e2e fg:#f38ba8 bold"   # red (root warning)
+style_user   = "bg:#303446 fg:#8caaee bold"   # blue
+style_root   = "bg:#303446 fg:#e78284 bold"   # red (root warning)
 format       = '[ $user ]($style)'
 
 # ── Directory ────────────────────────────────────────────────────
 [directory]
-style            = "bg:#313244 fg:#cba6f7 bold"   # mauve
+style            = "bg:#414559 fg:#ca9ee6 bold"   # mauve
 format           = "[ 󰉋 $path ]($style)"
 truncation_length = 3
 truncate_to_repo = true
 read_only        = " 󰌾"
-read_only_style  = "bg:#313244 fg:#f38ba8"
+read_only_style  = "bg:#414559 fg:#e78284"
 
 [directory.substitutions]
 "~"         = "󰜥 "
@@ -112,13 +112,13 @@ read_only_style  = "bg:#313244 fg:#f38ba8"
 
 # ── Git branch ───────────────────────────────────────────────────
 [git_branch]
-style    = "bg:#45475a fg:#f5c2e7 bold"   # pink
+style    = "bg:#51576d fg:#f4b8e4 bold"   # pink
 format   = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol   = " "
 
 # ── Git status ───────────────────────────────────────────────────
 [git_status]
-style     = "bg:#45475a fg:#fab387"   # peach
+style     = "bg:#51576d fg:#ef9f76"   # peach
 format    = '([$all_status$ahead_behind ]($style))'
 conflicted = "󰞇 "
 ahead      = "⇡${count} "
@@ -134,109 +134,109 @@ deleted    = "✘ "
 
 # ── Language versions ────────────────────────────────────────────
 [nodejs]
-style   = "bg:#1e1e2e fg:#cba6f7"   # mauve
+style   = "bg:#303446 fg:#ca9ee6"   # mauve
 format  = '[ $symbol($version) ]($style)'
 symbol  = " "
 
 [python]
-style         = "bg:#1e1e2e fg:#f9e2af"   # yellow
+style         = "bg:#303446 fg:#e5c890"   # yellow
 format        = '[ $symbol($version)(\($virtualenv\)) ]($style)'
 symbol        = " "
 python_binary = ["python3", "python"]
 
 [rust]
-style  = "bg:#1e1e2e fg:#fab387"   # peach
+style  = "bg:#303446 fg:#ef9f76"   # peach
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [golang]
-style  = "bg:#1e1e2e fg:#89dceb"   # sky
+style  = "bg:#303446 fg:#99d1db"   # sky
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [java]
-style  = "bg:#1e1e2e fg:#eba0ac"   # maroon
+style  = "bg:#303446 fg:#ea999c"   # maroon
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [kotlin]
-style  = "bg:#1e1e2e fg:#cba6f7"   # mauve
+style  = "bg:#303446 fg:#ca9ee6"   # mauve
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [php]
-style  = "bg:#1e1e2e fg:#b4befe"   # lavender
+style  = "bg:#303446 fg:#babbf1"   # lavender
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [c]
-style  = "bg:#1e1e2e fg:#89b4fa"   # blue
+style  = "bg:#303446 fg:#8caaee"   # blue
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [cmake]
-style  = "bg:#1e1e2e fg:#a6e3a1"   # green
+style  = "bg:#303446 fg:#a6d189"   # green
 format = '[ $symbol($version) ]($style)'
 symbol = "△ "
 
 [dart]
-style  = "bg:#1e1e2e fg:#94e2d5"   # teal
+style  = "bg:#303446 fg:#81c8be"   # teal
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [dotnet]
-style  = "bg:#1e1e2e fg:#cba6f7"   # mauve
+style  = "bg:#303446 fg:#ca9ee6"   # mauve
 format = '[ $symbol($version) ]($style)'
 symbol = "󰪮 "
 
 [elixir]
-style  = "bg:#1e1e2e fg:#b4befe"   # lavender
+style  = "bg:#303446 fg:#babbf1"   # lavender
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [haskell]
-style  = "bg:#1e1e2e fg:#eba0ac"   # maroon
+style  = "bg:#303446 fg:#ea999c"   # maroon
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [lua]
-style  = "bg:#1e1e2e fg:#89b4fa"   # blue
+style  = "bg:#303446 fg:#8caaee"   # blue
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [perl]
-style  = "bg:#1e1e2e fg:#89dceb"   # sky
+style  = "bg:#303446 fg:#99d1db"   # sky
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [ruby]
-style  = "bg:#1e1e2e fg:#f38ba8"   # red
+style  = "bg:#303446 fg:#e78284"   # red
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [scala]
-style  = "bg:#1e1e2e fg:#f38ba8"   # red
+style  = "bg:#303446 fg:#e78284"   # red
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [swift]
-style  = "bg:#1e1e2e fg:#fab387"   # peach
+style  = "bg:#303446 fg:#ef9f76"   # peach
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [zig]
-style  = "bg:#1e1e2e fg:#f9e2af"   # yellow
+style  = "bg:#303446 fg:#e5c890"   # yellow
 format = '[ $symbol($version) ]($style)'
 symbol = " "
 
 [docker_context]
-style  = "bg:#1e1e2e fg:#74c7ec"   # sapphire
+style  = "bg:#303446 fg:#85c1dc"   # sapphire
 format = '[ $symbol$context ]($style)'
 symbol = " "
 
 # ── Command duration ─────────────────────────────────────────────
 [cmd_duration]
-style             = "fg:#7f849c italic"   # overlay1
+style             = "fg:#737994 italic"   # overlay1
 format            = '[ 󱑂 $duration ]($style)'
 min_time          = 2_000
 show_milliseconds = false
@@ -244,16 +244,16 @@ show_milliseconds = false
 # ── Time ─────────────────────────────────────────────────────────
 [time]
 disabled      = false
-style         = "fg:#585b70"   # surface2
+style         = "fg:#626880"   # surface2
 format        = '[ 󱑃 $time ]($style)'
 time_format   = "%H:%M"
 use_12hr      = false
 
 # ── Prompt character ─────────────────────────────────────────────
 [character]
-success_symbol = "[❯](bold fg:#cba6f7)"   # mauve on success
-error_symbol   = "[❯](bold fg:#f38ba8)"   # red on error
-vimcmd_symbol  = "[❮](bold fg:#cba6f7)"   # mauve in vim mode
+success_symbol = "[❯](bold fg:#ca9ee6)"   # mauve on success
+error_symbol   = "[❯](bold fg:#e78284)"   # red on error
+vimcmd_symbol  = "[❮](bold fg:#ca9ee6)"   # mauve in vim mode
 
 # ── Modules to disable (noise reduction) ────────────────────────
 [package]
