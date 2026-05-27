@@ -4,6 +4,7 @@
 set -gx VISUAL   zeditor
 set -gx EDITOR   zeditor
 set -gx TERM     xterm-256color
+set -gx NAVI_PATH "$HOME/.config/navi"
 
 # bat → Catppuccin Mocha theme everywhere
 set -gx BAT_THEME "Catppuccin Mocha"
@@ -77,6 +78,11 @@ if status is-interactive
     # Ctrl-R → fzf history  |  Ctrl-T → fzf files  |  Alt-C → fzf dirs
     if command -q fzf
         fzf --fish | source
+    end
+
+    # ── navi: interactive cheatsheet widget (Ctrl-G) ──
+    if command -q navi
+        navi widget fish | source
     end
 
     # ── Atuin: shell history sync (optional) ─
@@ -228,6 +234,7 @@ if status is-interactive
 
     # — Git —
     abbr g      "git"
+    abbr gg     "gitui"
     abbr gi     "git init"
     abbr gs     "git status -sb"
     abbr ga     "git add"
@@ -320,6 +327,7 @@ if status is-interactive
 
     # — Misc shortcuts —
     abbr e      "$EDITOR ."
+    abbr http   "xh"
     abbr q      "exit"
     abbr cl     "clear"
     abbr reload "source ~/.config/fish/config.fish"
@@ -404,6 +412,11 @@ if status is-interactive
     # twitch: watch a Twitch stream via streamlink + mpv
     function twitch --description "Watch a Twitch stream in mpv"
         streamlink --player "mpv" https://www.twitch.tv/$argv[1] best
+    end
+
+    # anime: watch anime via ani-cli
+    function anime --description "Search and watch anime using ani-cli"
+        ani-cli $argv
     end
 
 end

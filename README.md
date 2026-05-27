@@ -90,6 +90,9 @@ These configs are built on the shoulders of a bunch of great open-source project
 | [Atuin](https://github.com/atuinsh/atuin) | shell history | Synced, searchable shell history |
 | [uutils coreutils](https://github.com/uutils/coreutils) | GNU coreutils | Dynamically maps `uu-*` binaries — falls back to system coreutils if not installed |
 | [bfetch](https://github.com/Mjoyufull/bfetch) | [fastfetch](https://github.com/fastfetch-cli/fastfetch) | System fetch on shell startup — falls back to fastfetch if not installed |
+| [navi](https://github.com/denisidoro/navi) | cheatsheets | Interactive cheatsheet searcher using `fzf` |
+| [xh](https://github.com/ducaale/xh) | `curl` / `httpie` | Fast, user-friendly HTTP client |
+| [gitui](https://github.com/extrawurst/gitui) | `lazygit` | Blazing-fast terminal UI for Git |
 
 ### 🎥 Media
 
@@ -97,6 +100,7 @@ These configs are built on the shoulders of a bunch of great open-source project
 |---------|-------------|
 | [streamlink](https://streamlink.github.io) | Extracts streams from sites like Twitch |
 | [mpv](https://mpv.io) | Minimal, powerful media player |
+| [ani-cli](https://github.com/pystardust/ani-cli) | Search and stream anime from the terminal |
 
 <div align="center">
 

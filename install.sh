@@ -56,10 +56,14 @@ PACKAGES=(
     fd
     ripgrep
     uutils-coreutils
+    navi
+    xh
+    gitui
     
     # Media
     streamlink
     mpv
+    ani-cli
 )
 
 # Detect AUR helper available in CachyOS (paru is default, yay is an alternative)
@@ -114,7 +118,7 @@ echo "Backing up existing configurations and symlinking new ones..."
 mkdir -p "$HOME/.config"
 
 # Process .config items
-for item in fastfetch fish ghostty starship.toml; do
+for item in fastfetch fish ghostty navi starship.toml; do
     TARGET="$HOME/.config/$item"
     
     # Check if target exists or is a broken symlink

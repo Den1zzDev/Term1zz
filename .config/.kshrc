@@ -15,6 +15,7 @@ export HISTCONTROL="ignoredups:ignorespace"
 export VISUAL="zeditor"
 export EDITOR="zeditor"
 export TERM="xterm-256color"
+export NAVI_PATH="$HOME/.config/navi"
 
 # bat → Catppuccin Mocha theme everywhere
 export BAT_THEME="Catppuccin Mocha"
@@ -224,6 +225,7 @@ alias cdb='cd -'
 # GIT ALIASES
 # ══════════════════════════════════════════════
 alias g='git'
+alias gg='gitui'
 alias gi='git init'
 alias gs='git status -sb'
 alias ga='git add'
@@ -330,6 +332,8 @@ alias kdf='kubectl delete -f'
 # MISCELLANEOUS ALIASES
 # ══════════════════════════════════════════════
 alias e='"$EDITOR" .'
+alias http='xh'
+alias nv='navi'
 alias q='exit'
 alias cl='clear'
 alias reload='. ~/.kshrc'
@@ -414,6 +418,11 @@ sshfzf() {
 # watch Twitch stream via streamlink + mpv
 twitch() {
     streamlink --player "mpv" "https://www.twitch.tv/$1" best
+}
+
+# search and watch anime via ani-cli
+anime() {
+    ani-cli "$@"
 }
 
 # ══════════════════════════════════════════════

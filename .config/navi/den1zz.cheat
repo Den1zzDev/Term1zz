@@ -1,0 +1,54 @@
+% den1zzfiles, media
+# Watch an anime using ani-cli
+anime "<anime_name>"
+
+# Watch a Twitch stream in mpv
+twitch "<channel_name>"
+
+% den1zzfiles, util
+# Make a directory and immediately cd into it
+mkcd "<dir_name>"
+
+# Go up N directories
+up <n_directories>
+
+# Extract any archive (tar, zip, 7z, rar, gz, etc.)
+extract "<archive_file>"
+
+# Fuzzy cd (fzf-powered directory jump)
+fcd
+
+# Fuzzy kill process
+fkill
+
+# cd to the root of the current git repository
+gitroot
+
+# Pick a known SSH host via fzf and connect
+sshfzf
+
+% den1zzfiles, network
+# View open ports
+ports
+
+# Check public IP address
+myip
+
+# Check local weather
+weather
+
+# Run a speedtest
+speedtest
+
+% den1zzfiles, docker
+# Docker compose up detached
+dcu
+
+# Docker compose down
+dcd
+
+# Docker compose logs follow
+dcl
+
+# Clean all docker unused images, networks and containers
+dprune
