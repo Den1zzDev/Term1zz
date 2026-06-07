@@ -40,6 +40,23 @@ echo -e "${RESET}"
 echo -e "  ${DIM}https://codeberg.org/Den1zz/Term1zz${RESET}"
 echo ""
 
+# ── Warning & Verification ──────────────────────
+echo -e "${RED}${BOLD}  ⚠ WARNING: Destructive Operation${RESET}"
+echo -e "  This installer will forcefully overwrite existing terminal configurations"
+echo -e "  (Fish, Ghostty, Starship, Zellij, Micro, etc.) that conflict with Term1zz."
+echo -e "  Your local conflicting files will be replaced by Term1zz versions."
+echo ""
+
+# Read from /dev/tty to allow interactive prompt when piped via curl | bash
+read -p "  Are you sure you want to proceed? [y/N] " -n 1 -r < /dev/tty
+echo ""
+echo ""
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    info "Installation aborted by user. No files were modified."
+    exit 0
+fi
+
 # ── Preflight ───────────────────────────────────
 if ! command -v pacman &>/dev/null; then
     fail "pacman not found. This installer requires an Arch-based distribution."
