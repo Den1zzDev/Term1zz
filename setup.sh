@@ -96,8 +96,11 @@ mkdir -p "$HOME/.config"
 for pkg in */; do
     pkg="${pkg%/}"  # Remove trailing slash
     info "  Stowing ${MAUVE}${pkg}${RESET}..."
-    stow -t "$HOME" -R "$pkg" 2>&1 || warn "Failed to stow $pkg — conflicts may exist."
+    stow --adopt -t "$HOME" -R "$pkg" 2>&1 || warn "Failed to stow $pkg — conflicts may exist."
 done
+
+# Reset the git repository to discard adopted user files and enforce the Term1zz versions
+git -C "$INSTALL_DIR" reset --hard >/dev/null 2>&1
 
 ok "All configurations linked."
 echo ""
