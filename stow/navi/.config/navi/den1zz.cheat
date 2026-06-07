@@ -1,0 +1,402 @@
+% term1zz, navigation
+# Go up one directory
+cd ..
+
+# Go up two directories
+cd ../..
+
+# Go up three directories
+cd ../../..
+
+# Go up four directories
+cd ../../../..
+
+# Go up N directories (custom function)
+up <n>
+
+# Go home
+cd ~
+
+# Jump back to last directory
+cd -
+
+# Make a directory and immediately cd into it
+mkcd <dir_name>
+
+# Fuzzy cd — pick any directory interactively via fzf
+fcd
+
+% term1zz, listing
+# List files (icons, color, dirs first)
+ls
+
+# Long list with hidden files, icons, git info
+ll
+
+# List all including hidden (icons, color, dirs first)
+la
+
+# Tree view — 2 levels deep
+lt
+
+# Tree view — 3 levels deep
+ltt
+
+# Long list with per-file and per-repo git status
+lg
+
+% term1zz, file-ops
+# View a file with syntax highlighting (bat)
+cat <file>
+
+# Page through a file with syntax highlighting
+less <file>
+
+# Show disk usage (dust)
+du
+
+# Extract any archive automatically
+extract <archive_file>
+
+% term1zz, search
+# Find files (fd — fast, respects .gitignore)
+find <pattern>
+
+# Search file contents (ripgrep)
+grep <pattern>
+
+# Fuzzy-find and kill a process interactively
+fkill
+
+% term1zz, editor
+# Open current directory in editor
+e
+
+# Open micro text editor
+micro <file>
+
+# Open micro (nano alias)
+nano <file>
+
+% term1zz, system
+# Show resource monitor (btop)
+top
+
+# Show open ports (TCP/UDP listening)
+ports
+
+# Check public IP address
+myip
+
+# Check local weather
+weather
+
+# Run a network speed test
+speedtest
+
+# Print PATH entries one per line
+path
+
+# Clear the terminal
+cl
+
+# Exit the shell
+q
+
+# Reload fish config (without restarting shell)
+reload
+
+# Edit fish config in editor
+fishrc
+
+% term1zz, git
+# Alias: git
+g <subcommand>
+
+# Open gitui TUI for git
+gg
+
+# Initialize a new git repo
+gi
+
+# Short git status
+gs
+
+# Stage a file
+ga <file>
+
+# Stage all changes
+gaa
+
+# Commit with a message
+gc "<message>"
+
+# Amend the last commit (keep message)
+gca
+
+# Checkout a branch or file
+gco <branch>
+
+# Create and checkout a new branch
+gcb <branch>
+
+# Push to remote
+gp
+
+# Force push safely (with lease)
+gpf
+
+# Push and set upstream to origin HEAD
+gpu
+
+# Pull from remote
+pl
+
+# Pull with rebase
+gpl
+
+# Fetch all remotes and prune stale refs
+gf
+
+# Show a graph log of all branches
+glog
+
+# Show diff of unstaged changes
+gd
+
+# Show diff of staged changes
+gds
+
+# List local branches
+gb
+
+# List all branches (local + remote)
+gba
+
+# Delete a branch
+gbd <branch>
+
+# Stash changes
+gst
+
+# Pop the latest stash
+gstp
+
+# Rebase onto a branch
+grb <branch>
+
+# Interactive rebase (last N commits)
+grbi HEAD~<n>
+
+# Cherry-pick a commit
+gcp <hash>
+
+# List or create tags
+gtag
+
+# Hard reset to HEAD (discard all local changes)
+greset
+
+# Remove untracked files and directories
+gclean
+
+# cd to git repository root
+gitroot
+
+# Manage bare dotfiles repo (git --git-dir=~/.dotfiles/ --work-tree=~)
+dots <subcommand>
+
+% term1zz, github-cli
+# Create a pull request
+ghpr
+
+# List open pull requests
+ghprl
+
+# Open pull request in browser
+ghprv
+
+% term1zz, npm
+# Install dependencies
+ni
+
+# Install a dev dependency
+nid
+
+# Install a package globally
+nig
+
+# Run a script
+nr <script>
+
+# Run dev server
+nrd
+
+# Build for production
+nrb
+
+# Run tests
+nrt
+
+# Run type/lint check
+nrc
+
+# Run preview server
+nrp
+
+% term1zz, pnpm
+# Install dependencies
+pi
+
+# Add a dependency
+pa <package>
+
+# Add a dev dependency
+pad <package>
+
+# Run a script
+pr <script>
+
+# Run dev server
+prd
+
+# Build for production
+prb
+
+% term1zz, yarn
+# Install dependencies
+yi
+
+# Add a dependency
+ya <package>
+
+# Run a script
+yr <script>
+
+% term1zz, python
+# Run python3
+py <script>
+
+# Run pip3
+pip <args>
+
+# Create a virtual environment and activate it
+venv
+
+# Activate an existing virtual environment
+va
+
+# Deactivate the current virtual environment
+vd
+
+% term1zz, docker
+# Alias: docker
+d <subcommand>
+
+# Alias: docker compose
+dc <subcommand>
+
+# Start compose services in the background
+dcu
+
+# Stop and remove compose services
+dcd
+
+# Follow compose service logs
+dcl
+
+# List running containers
+dps
+
+# List all containers (including stopped)
+dpsa
+
+# List local images
+dimg
+
+# Exec into a running container interactively
+dex <container> <cmd>
+
+# Remove a container
+drm <container>
+
+# Remove an image
+drmi <image>
+
+# Prune all unused images, networks, volumes
+dprune
+
+% term1zz, kubernetes
+# Alias: kubectl
+k <subcommand>
+
+# Get all pods
+kgp
+
+# Get all services
+kgs
+
+# Get all nodes
+kgn
+
+# Describe a resource
+kd <resource> <name>
+
+# Follow logs for a pod/container
+kl <pod>
+
+# Exec into a pod interactively
+kex <pod> <cmd>
+
+# Switch kube context (kubectx)
+kctx
+
+# Switch namespace (kubens)
+kns
+
+# Apply a manifest file
+kaf <file.yaml>
+
+# Delete resources from a manifest file
+kdf <file.yaml>
+
+% term1zz, network
+# Make an HTTP request (xh — httpie-compatible)
+http <method> <url>
+
+# Pick a known SSH host via fzf and connect
+sshfzf
+
+% term1zz, media
+# Watch a Twitch stream in mpv via streamlink
+twitch "<channel_name>"
+
+# Search and stream anime (ani-cli)
+anime "<anime_name>"
+
+% term1zz, fzf-keybindings
+# Fuzzy search shell history (Ctrl-R)
+Ctrl-R
+
+# Fuzzy insert file path at cursor (Ctrl-T)
+Ctrl-T
+
+# Fuzzy cd into a subdirectory (Alt-C)
+Alt-C
+
+% term1zz, navi-keybindings
+# Open navi interactive cheatsheet widget (Ctrl-G)
+Ctrl-G
+
+% term1zz, fisher
+# Install a fish plugin
+fisher install <plugin>
+
+# Update all installed fish plugins
+fisher update
+
+# Remove a fish plugin
+fisher remove <plugin>
+
+# List installed fish plugins
+fisher list

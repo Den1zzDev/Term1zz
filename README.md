@@ -1,28 +1,53 @@
 <div align="center">
 
-# ✦ Den1zzfiles ✦
+# ✦ Term1zz ✦
 
-*A curated collection of personal dotfiles & system configurations*
+*A modular terminal framework — managed by GNU Stow*
 
-[![KDE](https://img.shields.io/badge/DE-KDE_Plasma-5c91cf?style=flat-square&logo=kde&logoColor=white)](https://kde.org)
-[![Shell](https://img.shields.io/badge/Shell-Fish_%2F_Oksh-89b4fa?style=flat-square&logo=gnu-bash&logoColor=white)](https://fishshell.com)
+[![Arch](https://img.shields.io/badge/Distro-Arch_Linux-1793d1?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org)
+[![Shell](https://img.shields.io/badge/Shell-Fish-89b4fa?style=flat-square&logo=gnu-bash&logoColor=white)](https://fishshell.com)
 [![Ghostty](https://img.shields.io/badge/Terminal-Ghostty-a6e3a1?style=flat-square)](https://ghostty.org)
+[![Zellij](https://img.shields.io/badge/Multiplexer-Zellij-fab387?style=flat-square)](https://zellij.dev)
 [![Catppuccin](https://img.shields.io/badge/Theme-Catppuccin-f5c2e7?style=flat-square)](https://catppuccin.com)
 
 </div>
 
 ---
 
-## 🚀 Installation
+## ⚡ One-Line Install
 
 > [!WARNING]
-> The included `install.sh` script is **EXPERIMENTAL** and highly opinionated. It is designed for fresh CachyOS / KDE installations and will aggressively modify configurations in your home directory. **It is not recommended to run this on an existing setup.** Please review the script manually before execution!
+> Requires an **Arch-based** distribution with `pacman`. The script will install packages and symlink configurations into your home directory. Review the script before running!
 
 ```bash
-cd ~/.config
-git clone https://codeberg.org/Den1zz/Den1zzfiles
-cd Den1zzfiles
-./install.sh
+curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/main/setup.sh | bash
+```
+
+<details>
+<summary>What does it do?</summary>
+
+1. Installs dependencies via `pacman` — `git`, `stow`, `fish`, `zellij`, `micro`, `eza`, `bat`, `fastfetch`, `starship`
+2. Clones the repository to `~/.local/share/Term1zz`
+3. Uses GNU Stow to symlink all configuration packages into `$HOME`
+4. Sets Fish as the default shell
+
+</details>
+
+---
+
+## 🗂️ Repository Structure
+
+Configurations are organized as independent **Stow packages**. Each package mirrors the home directory layout so `stow -t $HOME <pkg>` creates correct symlinks.
+
+```
+stow/
+├── fastfetch/  → ~/.config/fastfetch/config.jsonc
+├── fish/       → ~/.config/fish/{config.fish, themes/, functions/, ...}
+├── ghostty/    → ~/.config/ghostty/config
+├── micro/      → ~/.config/micro/settings.json
+├── navi/       → ~/.config/navi/den1zz.cheat
+├── starship/   → ~/.config/starship.toml
+└── zellij/     → ~/.config/zellij/config.kdl
 ```
 
 ---
@@ -31,30 +56,13 @@ cd Den1zzfiles
 
 | Component | Choice | Notes |
 |-----------|--------|-------|
-| **Desktop Environment** | [KDE Plasma](https://kde.org) | Wayland |
-| **Shell** | Fish / Oksh | Atuin · zoxide · fzf integrations |
-| **Prompt** | Starship | Catppuccin styling |
-| **Terminal** | Ghostty | — |
-| **Editor** | Zed / Micro | — |
-| **UI / Theming** | [Catppuccin KDE](https://github.com/catppuccin/kde) | KDE Plasma theming |
-
----
-
-## 🐚 Shell Comparison — Fish vs Oksh
-
-Both shells are configured and ready to use. Pick whichever fits your workflow.
-
-| | [Fish](https://fishshell.com) | [Oksh](https://github.com/ibara/oksh) |
-|---|---|---|
-| **Philosophy** | Friendly & feature-rich out of the box | Minimal & POSIX-compliant |
-| **Syntax** | Custom (not POSIX) | POSIX sh / ksh |
-| **Autosuggestions** | ✅ Built-in | ❌ |
-| **Syntax highlighting** | ✅ Built-in | ❌ |
-| **Tab completions** | ✅ Extensive | Basic |
-| **Scripting** | Own syntax — not portable | POSIX — portable everywhere |
-| **Startup speed** | Fast | Faster |
-| **Resource usage** | Moderate | Very light |
-| **Best for** | Daily interactive use | Lightweight sessions, scripting, POSIX compatibility |
+| **Shell** | [Fish](https://fishshell.com) | Atuin · zoxide · fzf integrations |
+| **Prompt** | [Starship](https://starship.rs) | Catppuccin Frappé styling |
+| **Terminal** | [Ghostty](https://ghostty.org) | Fast, native emulator |
+| **Multiplexer** | [Zellij](https://zellij.dev) | Catppuccin Mocha theme, Alt-key bindings |
+| **Editor** | [Micro](https://micro-editor.github.io) | Terminal editor with mouse support |
+| **GUI Editor** | [Zed](https://zed.dev) | High-performance code editor |
+| **Theming** | [Catppuccin](https://catppuccin.com) | Soothing pastel scheme — everywhere |
 
 ---
 
@@ -66,13 +74,12 @@ These configs are built on the shoulders of a bunch of great open-source project
 
 | Project | What it does |
 |---------|-------------|
-| [KDE Plasma](https://kde.org) | Powerful and customizable desktop environment |
-| [Fish Shell](https://fishshell.com) / [Oksh](https://github.com/ibara/oksh) | Fish for interactive use, Oksh for lightweight POSIX compliance |
+| [Fish Shell](https://fishshell.com) | Feature-rich, friendly interactive shell |
 | [Starship](https://starship.rs) | Cross-shell prompt |
 | [Ghostty](https://ghostty.org) | Fast, native terminal emulator |
+| [Zellij](https://zellij.dev) | Modern terminal multiplexer with a plugin system |
+| [Micro](https://micro-editor.github.io) | Modern terminal text editor — intuitive & mouse-friendly |
 | [Zed](https://zed.dev) | High-performance code editor |
-| [Micro](https://micro-editor.github.io) | Modern terminal text editor |
-| [Catppuccin KDE](https://github.com/catppuccin/kde) | Soothing pastel theme for KDE Plasma |
 | [Catppuccin](https://catppuccin.com) | Soothing pastel color scheme (used everywhere) |
 
 ### 🔧 CLI Toolchain
