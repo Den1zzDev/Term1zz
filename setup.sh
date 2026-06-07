@@ -92,6 +92,12 @@ cd "$INSTALL_DIR/stow"
 # Ensure target directories exist
 mkdir -p "$HOME/.config"
 
+# Clean up legacy absolute symlinks from the old Den1zzfiles repository to prevent stow conflicts
+info "Cleaning up legacy configurations..."
+find "$HOME/.config" -type l -lname '*Den1zzfiles*' -delete 2>/dev/null || true
+find "$HOME" -maxdepth 1 -type l -lname '*Den1zzfiles*' -delete 2>/dev/null || true
+
+
 # Stow each package individually for clearer error reporting
 for pkg in */; do
     pkg="${pkg%/}"  # Remove trailing slash
