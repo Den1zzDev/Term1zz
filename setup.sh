@@ -70,6 +70,7 @@ echo ""
 if [ -d "$INSTALL_DIR/.git" ]; then
     info "Repository already exists at ${DIM}$INSTALL_DIR${RESET}"
     info "Pulling latest changes..."
+    git -C "$INSTALL_DIR" reset --hard >/dev/null 2>&1
     git -C "$INSTALL_DIR" pull --rebase || fail "Git pull failed."
     ok "Repository updated."
 else
