@@ -58,29 +58,86 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # ── Preflight ───────────────────────────────────
-if ! command -v pacman &>/dev/null; then
-    fail "pacman not found. This installer requires an Arch-based distribution."
+info "Detecting package manager..."
+if command -v pacman &>/dev/null; then
+    PKG_MGR="pacman"
+elif command -v dnf &>/dev/null; then
+    PKG_MGR="dnf"
+elif command -v zypper &>/dev/null; then
+    PKG_MGR="zypper"
+elif command -v apt-get &>/dev/null; then
+    PKG_MGR="apt-get"
+else
+    fail "No supported package manager found. Supported: pacman, dnf, zypper, apt-get."
 fi
-
-# ── Step 1: Install packages ───────────────────
-PACKAGES=(
-    git
-    stow
-    fish
-    zellij
-    micro
-    eza
-    bat
-    fastfetch
-    starship
-)
-
-info "Installing packages via pacman..."
-echo -e "  ${DIM}${PACKAGES[*]}${RESET}"
+ok "Detected $PKG_MGR."
 echo ""
 
-sudo pacman -S --needed --noconfirm "${PACKAGES[@]}" || fail "Package installation failed."
+# ── Step 1: Install packages ───────────────────
+info "Installing packages via $PKG_MGR..."
+
+# Universal base
+PACKAGES=(git stow fish micro)
+if [ "$PKG_MGR" != "apt-get" ]; then
+    PACKAGES+=(bat)
+fi
+
+if [ "$PKG_MGR" == "pacman" ]; then
+    PACKAGES+=(eza fastfetch zellij)
+    echo -e "  ${DIM}${PACKAGES[*]}${RESET}"
+    sudo pacman -S --needed --noconfirm "${PACKAGES[@]}" || fail "Package installation failed."
+
+elif [ "$PKG_MGR" == "dnf" ]; then
+    # Fedora: explicitly configure Terra repository first
+    sudo dnf install -y dnf-plugins-core
+    sudo dnf config-manager --add-repo https://terra.fyralabs.com/terra.repo
+    
+    PACKAGES+=(eza fastfetch zellij)
+    echo -e "  ${DIM}${PACKAGES[*]}${RESET}"
+    sudo dnf install -y "${PACKAGES[@]}" || fail "Package installation failed."
+
+elif [ "$PKG_MGR" == "zypper" ]; then
+    PACKAGES+=(eza fastfetch zellij)
+    echo -e "  ${DIM}${PACKAGES[*]}${RESET}"
+    sudo zypper install -y "${PACKAGES[@]}" || fail "Package installation failed."
+
+elif [ "$PKG_MGR" == "apt-get" ]; then
+    sudo apt-get update
+    
+    # apt-get needs specific dependencies for adding repos
+    APT_BASE=(bat gpg wget software-properties-common curl "${PACKAGES[@]}")
+    echo -e "  ${DIM}${APT_BASE[*]}${RESET}"
+    sudo apt-get install -y "${APT_BASE[@]}" || fail "Base package installation failed."
+    
+    # Resolve bat binary conflict
+    mkdir -p ~/.local/bin && ln -sf /usr/bin/batcat ~/.local/bin/bat
+    
+    # Add third-party repositories for eza and fastfetch
+    sudo mkdir -p /etc/apt/keyrings
+    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor --yes -o /etc/apt/keyrings/gierens.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list > /dev/null
+    sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+    
+    sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+    
+    sudo apt-get update
+    sudo apt-get install -y eza fastfetch || fail "eza and fastfetch installation failed."
+    
+    info "Installing zellij directly from official binary..."
+    wget -qO- "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz" | tar -xz -C ~/.local/bin zellij || fail "Zellij download failed."
+fi
+
 ok "All packages installed."
+echo ""
+
+# ── Standalone Installations ───────────────────
+info "Checking for starship prompt..."
+if ! command -v starship &>/dev/null; then
+    curl -sS https://starship.rs/install.sh | sh -s -- -y || fail "Starship installation failed."
+    ok "Starship installed."
+else
+    ok "Starship is already installed."
+fi
 echo ""
 
 # ── Step 2: Clone or update repository ─────────

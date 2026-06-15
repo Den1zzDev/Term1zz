@@ -5,6 +5,10 @@
 *A modular terminal framework — managed by GNU Stow*
 
 [![Arch](https://img.shields.io/badge/Distro-Arch_Linux-1793d1?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org)
+[![Fedora](https://img.shields.io/badge/Distro-Fedora-294172?style=flat-square&logo=fedora&logoColor=white)](https://fedoraproject.org)
+[![OpenSUSE](https://img.shields.io/badge/Distro-OpenSUSE-73ba25?style=flat-square&logo=opensuse&logoColor=white)](https://www.opensuse.org)
+[![Debian](https://img.shields.io/badge/Distro-Debian-A81D33?style=flat-square&logo=debian&logoColor=white)](https://www.debian.org)
+[![Ubuntu](https://img.shields.io/badge/Distro-Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white)](https://ubuntu.com)
 [![Shell](https://img.shields.io/badge/Shell-Fish-89b4fa?style=flat-square&logo=gnu-bash&logoColor=white)](https://fishshell.com)
 [![Ghostty](https://img.shields.io/badge/Terminal-Ghostty-a6e3a1?style=flat-square)](https://ghostty.org)
 [![Zellij](https://img.shields.io/badge/Multiplexer-Zellij-fab387?style=flat-square)](https://zellij.dev)
@@ -16,8 +20,8 @@
 
 ## ⚡ One-Line Install
 
-> [!WARNING]
-> Requires an **Arch-based** distribution with `pacman`. The script will install packages and symlink configurations into your home directory. Review the script before running!
+> [!NOTE]
+> Supports **Arch, Fedora, OpenSUSE, Debian, and Ubuntu**. The script will automatically configure third-party repositories (like the Terra repository for Fedora and official PPAs for Debian/Ubuntu) to guarantee access to modern utilities. It will then install packages and symlink configurations into your home directory. Review the script before running!
 
 ```bash
 curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/main/setup.sh | bash
@@ -26,7 +30,7 @@ curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/main/setup.sh | bash
 <details>
 <summary>What does it do?</summary>
 
-1. Installs dependencies via `pacman` — `git`, `stow`, `fish`, `zellij`, `micro`, `eza`, `bat`, `fastfetch`, `starship`
+1. Installs dependencies via your native package manager (`pacman`, `dnf`, `zypper`, or `apt-get`) — `git`, `stow`, `fish`, `zellij`, `micro`, `eza`, `bat`, `fastfetch`, and `starship`
 2. Clones the repository to `~/.local/share/Term1zz`
 3. Uses GNU Stow to symlink all configuration packages into `$HOME`
 4. Sets Fish as the default shell
