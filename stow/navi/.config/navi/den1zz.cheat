@@ -1,15 +1,15 @@
 % term1zz, navigation
 # Go up one directory
-cd ..
+..
 
 # Go up two directories
-cd ../..
+...
 
 # Go up three directories
-cd ../../..
+....
 
 # Go up four directories
-cd ../../../..
+.....
 
 # Go up N directories (custom function)
 up <n>
