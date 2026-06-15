@@ -24,7 +24,7 @@
 > Supports **Arch, Fedora, OpenSUSE, Debian, and Ubuntu**. The script will automatically configure third-party repositories (like the Terra repository for Fedora and official PPAs for Debian/Ubuntu) to guarantee access to modern utilities. It will then install packages and symlink configurations into your home directory. Review the script before running!
 
 ```bash
-curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/main/setup.sh | bash
+curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/cross-distro-testing/setup.sh | bash
 ```
 
 <details>
