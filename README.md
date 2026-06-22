@@ -27,15 +27,31 @@
 curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/cross-distro-testing/setup.sh | bash
 ```
 
+**Interactive Mode:** If you want to selectively install specific configurations instead of all of them, use the `-i` flag:
+```bash
+curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/cross-distro-testing/setup.sh | bash -s -- -i
+```
+
 <details>
 <summary>What does it do?</summary>
 
-1. Installs dependencies via your native package manager (`pacman`, `dnf`, `zypper`, or `apt-get`) — `git`, `stow`, `fish`, `zellij`, `micro`, `eza`, `bat`, `fastfetch`, and `starship`
-2. Clones the repository to `~/.local/share/Term1zz`
-3. Uses GNU Stow to symlink all configuration packages into `$HOME`
-4. Sets Fish as the default shell
+1. Creates backups of your existing configurations in `~/.config/term1zz_backups/`.
+2. Installs dependencies via your native package manager (`pacman`, `dnf`, `zypper`, or `apt-get`).
+3. Clones the repository to `~/.local/share/Term1zz`.
+4. Uses GNU Stow to symlink all configuration packages into `$HOME`.
+5. Sets Fish as the default shell.
 
 </details>
+
+---
+
+## 🗑️ Uninstallation
+
+Term1zz automatically backs up conflicting configurations before installing. If you wish to safely revert and remove all Term1zz symlinks, run:
+
+```bash
+~/.local/share/Term1zz/uninstall.sh
+```
 
 ---
 
@@ -65,7 +81,6 @@ stow/
 | **Terminal** | [Ghostty](https://ghostty.org) | Fast, native emulator |
 | **Multiplexer** | [Zellij](https://zellij.dev) | Catppuccin Mocha theme, Alt-key bindings |
 | **Editor** | [Micro](https://micro-editor.github.io) | Terminal editor with mouse support |
-| **GUI Editor** | [Zed](https://zed.dev) | High-performance code editor |
 | **Theming** | [Catppuccin](https://catppuccin.com) | Soothing pastel scheme — everywhere |
 
 ---
@@ -83,7 +98,6 @@ These configs are built on the shoulders of a bunch of great open-source project
 | [Ghostty](https://ghostty.org) | Fast, native terminal emulator |
 | [Zellij](https://zellij.dev) | Modern terminal multiplexer with a plugin system |
 | [Micro](https://micro-editor.github.io) | Modern terminal text editor — intuitive & mouse-friendly |
-| [Zed](https://zed.dev) | High-performance code editor |
 | [Catppuccin](https://catppuccin.com) | Soothing pastel color scheme (used everywhere) |
 
 ### 🔧 CLI Toolchain
