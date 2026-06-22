@@ -57,10 +57,11 @@ echo -e "  ${DIM}https://codeberg.org/Den1zz/Term1zz${RESET}"
 echo ""
 
 # ── Warning & Verification ──────────────────────
-echo -e "${RED}${BOLD}  ⚠ WARNING: Destructive Operation${RESET}"
-echo -e "  This installer will forcefully overwrite existing terminal configurations"
+echo -e "${RED}${BOLD}  ⚠ WARNING: Destructive Operation (Backups Taken)${RESET}"
+echo -e "  This installer will overwrite existing terminal configurations"
 echo -e "  (Fish, Ghostty, Starship, Zellij, Micro, etc.) that conflict with Term1zz."
-echo -e "  Your local conflicting files will be replaced by Term1zz versions."
+echo -e "  A backup of your conflicting files will be automatically created under"
+echo -e "  ~/.config/term1zz_backups/ before they are replaced."
 echo ""
 
 # Read from /dev/tty to allow interactive prompt when piped via curl | bash
@@ -277,12 +278,14 @@ for pkg in */; do
         echo ""
         if [[ $REPLY =~ ^[Nn]$ ]]; then
             info "  Skipping $pkg."
+            echo ""
             continue
         fi
     fi
 
     info "  Stowing ${MAUVE}${pkg}${RESET}..."
     stow --adopt -t "$HOME" -R "$pkg" 2>&1 || warn "Failed to stow $pkg — conflicts may exist."
+    echo ""
 done
 
 # Reset the git repository to discard adopted user files and enforce the Term1zz versions
