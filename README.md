@@ -81,6 +81,7 @@ stow/
 | **Terminal** | [Ghostty](https://ghostty.org) | Fast, native emulator |
 | **Multiplexer** | [Zellij](https://zellij.dev) | Catppuccin Mocha theme, Alt-key bindings |
 | **Editor** | [Micro](https://micro-editor.github.io) | Terminal editor with mouse support |
+| **GUI Editor** | [Zed](https://zed.dev) | High-performance code editor |
 | **Theming** | [Catppuccin](https://catppuccin.com) | Soothing pastel scheme — everywhere |
 
 ---
@@ -98,6 +99,7 @@ These configs are built on the shoulders of a bunch of great open-source project
 | [Ghostty](https://ghostty.org) | Fast, native terminal emulator |
 | [Zellij](https://zellij.dev) | Modern terminal multiplexer with a plugin system |
 | [Micro](https://micro-editor.github.io) | Modern terminal text editor — intuitive & mouse-friendly |
+| [Zed](https://zed.dev) | High-performance code editor |
 | [Catppuccin](https://catppuccin.com) | Soothing pastel color scheme (used everywhere) |
 
 ### 🔧 CLI Toolchain
