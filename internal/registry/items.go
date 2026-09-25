@@ -105,6 +105,7 @@ func Items() []Item {
 			},
 			FallbackRepo:    "nushell/nushell",
 			BinaryName:      "nu",
+			StowPackage:     "nushell",
 			DefaultSelected: false,
 		},
 

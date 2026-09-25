@@ -69,8 +69,8 @@ When you select a theme preset in `[6] Theming` or pass `--theme <name>`, Term1z
 - **Fish.** Interactive shell with autosuggestions and syntax highlighting.
 - **Starship.** Cross-shell prompt styled with active theme palette.
 - **Fisher plugins.** Automated bootstrap of Fisher with `fzf.fish`, `autopair`, and `z`.
-- **Zsh.** Configured shell with Starship and modern aliases.
-- **Nushell.** Shell oriented around structured data tables.
+- **Zsh.** Configured shell with Starship, modern history, and aliases.
+- **Nushell.** Shell oriented around structured data tables with Starship prompt.
 
 ### Multiplexers
 - **Zellij.** Terminal workspace with tabs, panes, and floating layouts.
@@ -120,6 +120,7 @@ stow/
 ├── ghostty/           → ~/.config/ghostty/config
 ├── micro/             → ~/.config/micro/settings.json
 ├── navi/              → ~/.config/navi/den1zz.cheat
+├── nushell/           → ~/.config/nushell/{config.nu, env.nu}
 ├── starship/          → ~/.config/starship.toml
 ├── theme-catppuccin/  → ~/.config/{ghostty,starship.toml,zellij,micro,bat,fastfetch,fish}
 ├── theme-everforest/  → ~/.config/{ghostty,starship.toml,zellij,micro,bat,fastfetch,fish}
