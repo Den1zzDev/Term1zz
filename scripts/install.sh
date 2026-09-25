@@ -122,6 +122,8 @@ install_go_toolchain() {
         ${ESCALATE} moss install -y golang
     elif command -v zypper >/dev/null 2>&1; then
         ${ESCALATE} zypper --non-interactive install go
+    elif command -v xbps-install >/dev/null 2>&1; then
+        ${ESCALATE} xbps-install -y go
     elif command -v brew >/dev/null 2>&1; then
         brew install go
     elif [ "${OS}" = "darwin" ]; then
@@ -242,6 +244,16 @@ else
             cp -R "${TMP_DIR}/src/stow"/* "${INSTALL_DIR}/stow/"
             ok "Configurations synchronized."
         fi
+    fi
+fi
+
+# Prime administrative credentials if non-root and sudo/doas is available
+if [ "$(id -u)" -ne 0 ]; then
+    if command -v sudo >/dev/null 2>&1; then
+        info "Checking administrative privileges..."
+        sudo -v || true
+    elif command -v doas >/dev/null 2>&1; then
+        doas -v || true
     fi
 fi
 

@@ -64,10 +64,10 @@ func Items() []Item {
 		{
 			ID:          "fisher",
 			Name:        "Fisher Plugins (Fish)",
-			Description: "Plugin manager for Fish installing fzf.fish, autopair, and tide",
+			Description: "Plugin manager for Fish installing fzf.fish and autopair",
 			Category:    CatShells,
 			CustomScript: "if command -v fish >/dev/null 2>&1; then " +
-				"fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher PatrickF1/fzf.fish jethrokuan/z' || true; " +
+				"fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher PatrickF1/fzf.fish jorgebucaran/autopair' || true; " +
 				"fi",
 			DefaultSelected:  true,
 			PostInstallNotes: "Bootstraps Fisher and recommended plugins directly inside Fish.",
@@ -239,7 +239,6 @@ func Items() []Item {
 				distro.PMPacman: "zoxide",
 				distro.PMDnf:    "zoxide",
 				distro.PMApt:    "zoxide",
-				distro.PMApk:    "zoxide",
 				distro.PMZypper: "zoxide",
 				distro.PMXbps:   "zoxide",
 				distro.PMBrew:   "zoxide",
@@ -398,10 +397,10 @@ func Items() []Item {
 			DefaultSelected: true,
 		},
 		{
-			ID:          "nerdfonts",
-			Name:        "JetBrainsMono Nerd Font",
-			Description: "Installs JetBrainsMono Nerd Font for powerline symbols and terminal icons",
-			Category:    CatTerminals,
+			ID:                   "nerdfonts",
+			Name:                 "JetBrainsMono Nerd Font",
+			Description:          "Installs JetBrainsMono Nerd Font for powerline symbols and terminal icons",
+			Category:             CatTerminals,
 			Packages: map[distro.PackageManager]string{
 				distro.PMPacman: "ttf-jetbrains-mono-nerd",
 				distro.PMDnf:    "jetbrains-mono-fonts-all",
@@ -421,8 +420,9 @@ func Items() []Item {
 				"rm -rf \"${TMP_F}\"; " +
 				"if command -v fc-cache >/dev/null 2>&1; then fc-cache -f \"${FONT_DIR}\" >/dev/null 2>&1 || true; fi; " +
 				"fi",
-			DefaultSelected:  true,
-			PostInstallNotes: "Installs into user font directory and refreshes cache.",
+			CustomScriptFallback: true,
+			DefaultSelected:      true,
+			PostInstallNotes:     "Installs into user font directory and refreshes cache.",
 		},
 
 		// ─────────────────────────────────────────────
@@ -485,7 +485,6 @@ func Items() []Item {
 			Description: "Interactive cheatsheet searcher using fzf",
 			Category:    CatUtils,
 			Packages: map[distro.PackageManager]string{
-				distro.PMMoss:   "navi",
 				distro.PMPacman: "navi",
 				distro.PMBrew:   "navi",
 			},
@@ -516,7 +515,6 @@ func Items() []Item {
 			Description: "User-friendly HTTP client with concise syntax and colors",
 			Category:    CatUtils,
 			Packages: map[distro.PackageManager]string{
-				distro.PMMoss:   "xh",
 				distro.PMPacman: "xh",
 				distro.PMApk:    "xh",
 				distro.PMBrew:   "xh",

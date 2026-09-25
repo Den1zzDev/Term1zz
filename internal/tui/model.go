@@ -364,8 +364,6 @@ func (m Model) viewSelecting() string {
 		listLines = append(listLines, line)
 	}
 
-	leftPane := ListBoxStyle.Width(44).Height(12).Render(strings.Join(listLines, "\n"))
-
 	// Detail Pane for currently focused item
 	var detailContent string
 	if len(items) > 0 && m.Cursor < len(items) {
@@ -395,17 +393,43 @@ func (m Model) viewSelecting() string {
 		}
 	}
 
-	rightPane := DetailBoxStyle.Width(36).Height(12).Render(detailContent)
+	termWidth := m.Width
+	if termWidth <= 0 {
+		termWidth = 80
+	}
 
-	split := lipgloss.JoinHorizontal(lipgloss.Top, leftPane, "  ", rightPane)
+	var split string
+	if termWidth < 95 {
+		// Responsive vertical layout for 80-column / smaller terminals
+		contentWidth := termWidth - 4
+		if contentWidth < 40 {
+			contentWidth = 40
+		}
+		leftPane := ListBoxStyle.Width(contentWidth).Render(strings.Join(listLines, "\n"))
+		rightPane := DetailBoxStyle.Width(contentWidth).Render(detailContent)
+		split = lipgloss.JoinVertical(lipgloss.Left, leftPane, rightPane)
+	} else {
+		// Responsive side-by-side split for wide terminals
+		leftWidth := (termWidth - 6) * 55 / 100
+		if leftWidth < 44 {
+			leftWidth = 44
+		}
+		rightWidth := termWidth - leftWidth - 6
+		if rightWidth < 34 {
+			rightWidth = 34
+		}
+		leftPane := ListBoxStyle.Width(leftWidth).Height(12).Render(strings.Join(listLines, "\n"))
+		rightPane := DetailBoxStyle.Width(rightWidth).Height(12).Render(detailContent)
+		split = lipgloss.JoinHorizontal(lipgloss.Top, leftPane, "  ", rightPane)
+	}
+
 	b.WriteString(split + "\n\n")
 
 	// Keymap Footer
-	footer := fmt.Sprintf("%s toggle  %s mode  %s all  %s / %s category  %s dry-run  %s install  %s quit",
+	footer := fmt.Sprintf("%s toggle  %s mode  %s all  %s category  %s dry-run  %s review  %s quit",
 		KeyStyle.Render("[space]"),
 		KeyStyle.Render("[m]"),
 		KeyStyle.Render("[a]"),
-		KeyStyle.Render("[1-7]"),
 		KeyStyle.Render("[tab]"),
 		KeyStyle.Render("[d]"),
 		KeyStyle.Render("[enter]"),

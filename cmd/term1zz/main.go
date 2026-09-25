@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -52,6 +53,8 @@ func main() {
 		normalizedTheme = "theme-" + normalizedTheme
 	}
 
+	primeEscalator(distroInfo, *dryRun)
+
 	if *batch {
 		runBatch(distroInfo, cfgMgr, *dryRun, normalizedTheme)
 		return
@@ -63,6 +66,26 @@ func main() {
 	if _, err := p.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error running Term1zz TUI: %v\n", err)
 		os.Exit(1)
+	}
+}
+
+func primeEscalator(d distro.Info, dryRun bool) {
+	if dryRun || d.IsRoot {
+		return
+	}
+	switch d.Escalator {
+	case "sudo":
+		cmd := exec.Command("sudo", "-v")
+		cmd.Stdin = os.Stdin
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		_ = cmd.Run()
+	case "doas":
+		cmd := exec.Command("doas", "-v")
+		cmd.Stdin = os.Stdin
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		_ = cmd.Run()
 	}
 }
 

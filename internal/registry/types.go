@@ -17,17 +17,18 @@ const (
 
 // Item represents a tool, shell, font, or configuration package.
 type Item struct {
-	ID               string
-	Name             string
-	Description      string
-	Category         Category
-	Packages         map[distro.PackageManager]string
-	FallbackRepo     string // GitHub owner/repo for direct releases
-	BinaryName       string // Target executable name
-	StowPackage      string // Directory under stow/ if curated dotfiles exist
-	CustomScript     string // Optional shell command to run during installation
-	DefaultSelected  bool
-	PostInstallNotes string
+	ID                   string
+	Name                 string
+	Description          string
+	Category             Category
+	Packages             map[distro.PackageManager]string
+	FallbackRepo         string // GitHub owner/repo for direct releases
+	BinaryName           string // Target executable name
+	StowPackage          string // Directory under stow/ if curated dotfiles exist
+	CustomScript         string // Optional shell command to run during installation
+	CustomScriptFallback bool   // If true, CustomScript only runs when PackageFor finds no native package
+	DefaultSelected      bool
+	PostInstallNotes     string
 }
 
 // PackageFor returns the package name for the detected package manager.
