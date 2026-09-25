@@ -38,7 +38,7 @@ func main() {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Printf("Term1zz v%s\n", version)
+		fmt.Printf("Term1zz (Reborn) v%s\n", version)
 		os.Exit(0)
 	}
 
@@ -112,7 +112,7 @@ func findStowDir(custom, home string) string {
 }
 
 func runBatch(d distro.Info, cfgMgr *configs.Manager, dryRun bool, activeTheme string) {
-	fmt.Printf("Term1zz v%s (Batch Mode)\n", version)
+	fmt.Printf("Term1zz (Reborn) v%s (Batch Mode)\n", version)
 	fmt.Println(d.FormatSummary())
 
 	var selections []runner.Selection

@@ -2,7 +2,7 @@
 set -eu
 
 # ─────────────────────────────────────────────────────────────
-# Term1zz — POSIX Installer & Bootstrap
+# Term1zz (Reborn) — POSIX Installer & Bootstrap
 # https://github.com/Den1zzDev/Term1zz
 # ─────────────────────────────────────────────────────────────
 
@@ -42,7 +42,7 @@ banner() {
     printf "\n"
     printf "%b" "${MAUVE}${BOLD}"
     printf "  +----------------------------------------+\n"
-    printf "  |               Term1zz                  |\n"
+    printf "  |           Term1zz (Reborn)             |\n"
     printf "  |       Modular Terminal Toolbox         |\n"
     printf "  +----------------------------------------+\n"
     printf "%b" "${RESET}"

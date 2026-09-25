@@ -1,17 +1,17 @@
-# Contributing to Term1zz
+# Contributing to Term1zz (Reborn)
 
-Thank you for contributing to Term1zz. This guide explains how to add tools, update configurations, and test your changes across supported distributions.
+Thank you for contributing to Term1zz (Reborn). This guide explains how to add tools, update configurations, and test your changes across supported distributions.
 
 ## Architecture
 
 Term1zz is structured into focused Go packages:
 
-- `cmd/term1zz`: Main entry point and CLI flag parsing.
-- `internal/distro`: Distribution detection, package manager mapping, and privilege escalation.
+- `cmd/term1zz`: Main entry point, CLI flag parsing, and privilege pre-flight checks.
+- `internal/distro`: Distribution detection, package manager mapping, and privilege escalation handling.
 - `internal/registry`: Catalog of tools, categories, package mappings, and install scripts.
 - `internal/configs`: Dotfile manager that creates symlinks and writes timestamped backups.
 - `internal/runner`: Dependency resolution, theme override logic, execution planner, and progress reporting.
-- `internal/tui`: Terminal user interface built with Bubbletea and Lipgloss.
+- `internal/tui`: Responsive terminal user interface built with Bubbletea and Lipgloss.
 - `stow/`: Configuration files organized by tool and theme preset.
 
 ## Adding a new tool
@@ -50,6 +50,7 @@ Theme presets live under `stow/theme-<name>/`. Each theme provides configuration
 - `stow/theme-<name>/.config/starship.toml`
 - `stow/theme-<name>/.config/zellij/config.kdl`
 - `stow/theme-<name>/.config/micro/settings.json`
+- `stow/theme-<name>/.config/micro/colorschemes/<name>.micro`
 - `stow/theme-<name>/.config/bat/config`
 - `stow/theme-<name>/.config/fastfetch/config.jsonc`
 - `stow/theme-<name>/.config/fish/conf.d/00-term1zz-theme.fish`
@@ -70,6 +71,12 @@ go build -o term1zz ./cmd/term1zz
 go vet ./...
 ```
 
+### Running unit tests
+
+```sh
+go test -v ./...
+```
+
 ### Testing across distributions
 
 Never run destructive package install tests directly on your host machine. Use container testing scripts with Podman:
@@ -79,33 +86,34 @@ Never run destructive package install tests directly on your host machine. Use c
 podman run --rm -v $(pwd):/repo:ro docker.io/library/archlinux:latest sh -c "
     pacman -Syu --noconfirm which sudo >/dev/null 2>&1
     useradd -m tester && echo 'tester ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./setup.sh --batch --dry-run'
+    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./term1zz --batch --dry-run'
 "
 
 # Dry run inside Fedora
 podman run --rm -v $(pwd):/repo:ro docker.io/library/fedora:latest sh -c "
     dnf install -y which sudo >/dev/null 2>&1
     useradd -m tester && echo 'tester ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./setup.sh --batch --dry-run'
+    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./term1zz --batch --dry-run'
 "
 
 # Dry run inside Ubuntu
 podman run --rm -v $(pwd):/repo:ro docker.io/library/ubuntu:latest sh -c "
     apt-get update -qq && apt-get install -y -qq sudo >/dev/null 2>&1
     useradd -m -s /bin/bash tester && echo 'tester ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./setup.sh --batch --dry-run'
+    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./term1zz --batch --dry-run'
 "
 
 # Dry run inside Alpine
 podman run --rm -v $(pwd):/repo:ro docker.io/library/alpine:latest sh -c "
     apk add --no-cache sudo bash >/dev/null 2>&1
     adduser -D tester && echo 'tester ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./setup.sh --batch --dry-run'
+    su - tester -c 'cp -r /repo ~/Term1zz && cd ~/Term1zz && ./term1zz --batch --dry-run'
 "
 ```
 
 ## Pull requests
 
 - Keep changes focused and self-contained.
+- Run `go test -v ./...` and `go vet ./...`.
 - Verify that code compiles with `CGO_ENABLED=0 go build ./cmd/term1zz`.
 - Ensure scripts run under standard `/bin/sh` without bashisms.

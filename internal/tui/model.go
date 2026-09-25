@@ -316,7 +316,7 @@ func (m Model) viewSelecting() string {
 	var b strings.Builder
 
 	// Header Banner
-	header := TitleStyle.Render("✦ Term1zz ✦") + " " + SubtleStyle.Render("Modular Terminal Toolbox")
+	header := TitleStyle.Render("✦ Term1zz (Reborn) ✦") + " " + SubtleStyle.Render("Modular Terminal Toolbox")
 	if m.DryRun {
 		header += " " + BadgeStyle.Render("DRY RUN")
 	}
@@ -505,7 +505,7 @@ func (m Model) viewReviewing() string {
 
 func (m Model) viewRunning() string {
 	var b strings.Builder
-	b.WriteString(TitleStyle.Render("✦ Executing Term1zz Setup ✦") + "\n\n")
+	b.WriteString(TitleStyle.Render("✦ Executing Term1zz (Reborn) Setup ✦") + "\n\n")
 
 	recentLogs := m.Logs
 	if len(recentLogs) > 15 {

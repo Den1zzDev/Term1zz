@@ -1,4 +1,4 @@
-# Term1zz
+# Term1zz (Reborn)
 
 Terminal environment manager and dotfile orchestrator for Linux and macOS.
 
@@ -21,6 +21,9 @@ The installer downloads a pre-compiled binary when available. If no binary match
 ```sh
 # Build binary
 go build -o term1zz ./cmd/term1zz
+
+# Run unit tests
+go test -v ./...
 
 # Preview planned actions without modifying system state
 ./term1zz --dry-run
@@ -57,9 +60,9 @@ When you select a theme preset in `[6] Theming` or pass `--theme <name>`, Term1z
 
 | Preset | Target tools tailored |
 | --- | --- |
-| **Catppuccin** (`catppuccin`) | Ghostty (`Catppuccin Mocha`), Fish theme, Starship palette, Zellij layout, Micro colorscheme, Bat (`Catppuccin Mocha`), Fastfetch |
+| **Catppuccin** (`catppuccin`) | Ghostty (`Catppuccin Mocha`), Fish theme, Starship palette, Zellij layout, Micro (`catppuccin-mocha`), Bat (`Catppuccin Mocha`), Fastfetch |
 | **Everforest** (`everforest`) | Ghostty (`Everforest Dark Hard`), Fish theme, Starship palette, Zellij layout, Micro (`solarized-dark`), Bat (`gruvbox-dark`), Fastfetch |
-| **Tokyo Night** (`tokyonight`) | Ghostty (`TokyoNight`), Fish theme, Starship palette, Zellij layout, Micro (`tokyonight`), Bat (`TokyoNight`), Fastfetch |
+| **Tokyo Night** (`tokyonight`) | Ghostty (`TokyoNight`), Fish theme, Starship palette, Zellij layout, Micro (`tokyonight`), Bat (`TwoDark`), Fastfetch |
 
 ---
 
@@ -68,8 +71,8 @@ When you select a theme preset in `[6] Theming` or pass `--theme <name>`, Term1z
 ### Shells and prompts
 - **Fish.** Interactive shell with autosuggestions and syntax highlighting.
 - **Starship.** Cross-shell prompt styled with active theme palette.
-- **Fisher plugins.** Automated bootstrap of Fisher with `fzf.fish`, `autopair`, and `z`.
-- **Zsh.** Configured shell with Starship, modern history, and aliases.
+- **Fisher plugins.** Automated bootstrap of Fisher with `fzf.fish` and `autopair`.
+- **Zsh.** Configured shell with Starship, modern history deduplication, and completion caching.
 - **Nushell.** Shell oriented around structured data tables with Starship prompt.
 
 ### Multiplexers
@@ -77,24 +80,24 @@ When you select a theme preset in `[6] Theming` or pass `--theme <name>`, Term1z
 - **tmux.** Terminal multiplexer with session persistence.
 
 ### Command-line utilities
-- **eza.** File listing with colors, git status, and icons.
-- **bat.** Syntax-highlighted file viewer with automatic paging.
-- **fd.** Fast file search utility.
-- **ripgrep.** Recursive regex text search.
-- **zoxide.** Directory jumper tracking frequent paths.
+- **eza.** Modern `ls` with colors, git status, and tree view.
+- **bat.** Syntax-highlighted file viewer with automatic paging and git integration.
+- **fd.** Fast, user-friendly alternative to `find`.
+- **ripgrep.** Recursive regex text search respecting `.gitignore`.
+- **zoxide.** Smarter `cd` tracking frequently visited paths.
 - **fzf.** General-purpose fuzzy finder.
-- **dust.** Disk usage visualizer.
+- **dust.** Graphical disk usage visualizer.
 - **btop.** Terminal system resource monitor.
-- **yazi.** Terminal file manager with async I/O.
+- **yazi.** Terminal file manager with async I/O and image previews.
 
 ### Editors and git
 - **Micro.** Terminal editor with intuitive keybindings and mouse support.
 - **GitUI.** Fast git terminal interface written in Rust.
-- **lazygit.** Simple git terminal interface written in Go.
+- **lazygit.** Terminal UI for git commands with visual branch management.
 
 ### Terminal emulators and fonts
-- **Ghostty.** GPU-accelerated terminal emulator.
-- **JetBrainsMono Nerd Font.** Automated installer for developer fonts and powerline glyphs.
+- **Ghostty.** GPU-accelerated terminal emulator with native tabs and font features.
+- **JetBrainsMono Nerd Font.** Automated installer for developer fonts and powerline glyphs with native package mapping and direct archive fallback.
 
 ### Theming
 - **Catppuccin.** Soothing pastel theme preset tailored across all terminal tools.
@@ -105,7 +108,24 @@ When you select a theme preset in `[6] Theming` or pass `--theme <name>`, Term1z
 - **fastfetch.** Maintained system information display styled with active theme accents.
 - **navi.** Interactive cheatsheet browser using fzf.
 - **atuin.** Searchable SQLite shell history sync.
-- **xh.** Fast HTTP client with concise syntax.
+- **xh.** User-friendly HTTP client with concise syntax and colors.
+
+---
+
+## Supported platforms and package managers
+
+Term1zz supports both Linux and macOS with automatic detection of packages and non-destructive privilege escalation:
+
+| Platform / Distro | Package Manager | Escalation |
+| --- | --- | --- |
+| **macOS** | Homebrew (`brew`) | None (Homebrew standard) |
+| **AerynOS** | `moss` | `run0` / `sudo` |
+| **Arch Linux** | `pacman` | `sudo` / `run0` / `doas` |
+| **Fedora** | `dnf` | `sudo` / `run0` / `doas` |
+| **Ubuntu / Debian** | `apt-get` | `sudo` / `run0` / `doas` |
+| **Alpine Linux** | `apk` | `sudo` / `doas` |
+| **openSUSE** | `zypper` | `sudo` / `run0` / `doas` |
+| **Void Linux** | `xbps-install` | `sudo` / `doas` |
 
 ---
 
@@ -116,7 +136,7 @@ Configurations live in `stow/` and mirror the user home directory:
 ```
 stow/
 ├── fastfetch/         → ~/.config/fastfetch/config.jsonc
-├── fish/              → ~/.config/fish/{config.fish, functions/, completions/}
+├── fish/              → ~/.config/fish/{config.fish, conf.d/, functions/, completions/}
 ├── ghostty/           → ~/.config/ghostty/config
 ├── micro/             → ~/.config/micro/settings.json
 ├── navi/              → ~/.config/navi/den1zz.cheat
