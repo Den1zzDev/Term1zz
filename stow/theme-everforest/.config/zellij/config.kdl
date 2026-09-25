@@ -1,0 +1,56 @@
+// ──────────────────────────────────────────────
+// Zellij Configuration — Everforest Dark
+// Part of Term1zz
+// ──────────────────────────────────────────────
+
+theme "everforest"
+
+themes {
+    everforest {
+        bg      "#2d353b"
+        fg      "#d3c6aa"
+        red     "#e67e80"
+        green   "#a7c080"
+        blue    "#7fbbb3"
+        yellow  "#dbbc7f"
+        magenta "#d699b6"
+        orange  "#e69875"
+        cyan    "#83c092"
+        black   "#232a2e"
+        white   "#d3c6aa"
+    }
+}
+
+default_shell "fish"
+default_layout "default"
+pane_frames true
+auto_layout true
+on_force_close "detach"
+simplified_ui false
+mouse_mode true
+scroll_buffer_size 50000
+copy_on_select true
+scrollback_editor "micro"
+mirror_session false
+default_mode "normal"
+
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name false
+    }
+}
+
+keybinds clear-defaults=false {
+    shared_except "locked" {
+        bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt n" { NewPane; }
+        bind "Alt t" { NewTab; }
+        bind "Alt w" { CloseFocus; }
+    }
+}

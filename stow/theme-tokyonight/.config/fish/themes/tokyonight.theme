@@ -1,0 +1,28 @@
+# name: 'Tokyo Night'
+# url: 'https://github.com/folke/tokyonight.nvim'
+
+fish_color_normal c0caf5
+fish_color_command 7aa2f7
+fish_color_param 9aa5ce
+fish_color_keyword bb9af7
+fish_color_quote 9ece6a
+fish_color_redirection e0af68
+fish_color_end ff9e64
+fish_color_comment 565f89
+fish_color_error f7768e
+fish_color_gray 565f89
+fish_color_selection --background=283457
+fish_color_search_match --background=283457
+fish_color_option 7dcfff
+fish_color_operator bb9af7
+fish_color_escape 2ac3de
+fish_color_autosuggestion 565f89
+fish_color_cancel f7768e
+fish_color_cwd 73daca
+fish_color_user 7aa2f7
+fish_color_host b4f9f8
+fish_color_host_remote 7aa2f7
+fish_color_status f7768e
+fish_pager_color_progress 565f89
+fish_pager_color_prefix 7dcfff
+fish_pager_color_completion c0caf5

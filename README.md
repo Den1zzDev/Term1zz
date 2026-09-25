@@ -1,116 +1,164 @@
-<div align="center">
+# Term1zz (Reborn)
 
-# ✦ Term1zz ✦
+Terminal environment manager and dotfile orchestrator for Linux and macOS.
 
-*A modular terminal framework — managed by GNU Stow*
-
-[![Arch](https://img.shields.io/badge/Distro-Arch_Linux-1793d1?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org)
-[![Shell](https://img.shields.io/badge/Shell-Fish-89b4fa?style=flat-square&logo=gnu-bash&logoColor=white)](https://fishshell.com)
-[![Ghostty](https://img.shields.io/badge/Terminal-Ghostty-a6e3a1?style=flat-square)](https://ghostty.org)
-[![Zellij](https://img.shields.io/badge/Multiplexer-Zellij-fab387?style=flat-square)](https://zellij.dev)
-[![Catppuccin](https://img.shields.io/badge/Theme-Catppuccin-f5c2e7?style=flat-square)](https://catppuccin.com)
-
-</div>
+Term1zz detects your operating system, package manager, and privilege escalation tools to install modern command-line utilities, apply unified theme presets, and link dotfiles.
 
 ---
 
-## ⚡ One-Line Install
+## Quickstart
 
-> [!WARNING]
-> Requires an **Arch-based** distribution with `pacman`. The script will install packages and symlink configurations into your home directory. Review the script before running!
+### One-line installer
 
-```bash
-curl -sL https://codeberg.org/Den1zz/Term1zz/raw/branch/main/setup.sh | bash
+```sh
+curl -fsSL https://raw.githubusercontent.com/Den1zzDev/Term1zz/main/scripts/install.sh | sh
 ```
 
-<details>
-<summary>What does it do?</summary>
+The installer downloads a pre-compiled binary when available. If no binary matches your system, it compiles from source automatically.
 
-1. Installs dependencies via `pacman` — `git`, `stow`, `fish`, `zellij`, `micro`, `eza`, `bat`, `fastfetch`, `starship`
-2. Clones the repository to `~/.local/share/Term1zz`
-3. Uses GNU Stow to symlink all configuration packages into `$HOME`
-4. Sets Fish as the default shell
+### Build from source
 
-</details>
+```sh
+# Build binary
+go build -o term1zz ./cmd/term1zz
+
+# Run unit tests
+go test -v ./...
+
+# Preview planned actions without modifying system state
+./term1zz --dry-run
+
+# Run interactive TUI
+./term1zz
+
+# Run batch mode with a specific theme preset
+./term1zz --batch --theme everforest
+```
 
 ---
 
-## 🗂️ Repository Structure
+## Keybindings
 
-Configurations are organized as independent **Stow packages**. Each package mirrors the home directory layout so `stow -t $HOME <pkg>` creates correct symlinks.
+| Key | Action |
+| --- | --- |
+| `↑` / `k`, `↓` / `j` | Move selection cursor |
+| `Space` | Toggle item (exclusive selection in `[6] Theming`) |
+| `m` | Cycle install mode (`[all]` tool + config, `[pkg]` package only, `[cfg]` config only) |
+| `a` | Toggle all items in category (selects highlighted theme in `[6] Theming`) |
+| `1` - `7` | Jump directly to category |
+| `Tab` / `Shift+Tab` | Cycle through categories |
+| `d` | Toggle dry-run mode |
+| `Enter` | Review installation plan |
+| `y` (in review) | Confirm and execute plan |
+| `q` / `Ctrl+C` | Quit |
+
+---
+
+## Suite theming
+
+When you select a theme preset in `[6] Theming` or pass `--theme <name>`, Term1zz configures the entire terminal suite specifically for that palette:
+
+| Preset | Target tools tailored |
+| --- | --- |
+| **Catppuccin** (`catppuccin`) | Ghostty (`Catppuccin Mocha`), Fish theme, Starship palette, Zellij layout, Micro (`catppuccin-mocha`), Bat (`Catppuccin Mocha`), Fastfetch |
+| **Everforest** (`everforest`) | Ghostty (`Everforest Dark Hard`), Fish theme, Starship palette, Zellij layout, Micro (`solarized-dark`), Bat (`gruvbox-dark`), Fastfetch |
+| **Tokyo Night** (`tokyonight`) | Ghostty (`TokyoNight`), Fish theme, Starship palette, Zellij layout, Micro (`tokyonight`), Bat (`TwoDark`), Fastfetch |
+
+---
+
+## Included tools
+
+### Shells and prompts
+- **Fish.** Interactive shell with autosuggestions and syntax highlighting.
+- **Starship.** Cross-shell prompt styled with active theme palette.
+- **Fisher plugins.** Automated bootstrap of Fisher with `fzf.fish` and `autopair`.
+- **Zsh.** Configured shell with Starship, modern history deduplication, and completion caching.
+- **Nushell.** Shell oriented around structured data tables with Starship prompt.
+
+### Multiplexers
+- **Zellij.** Terminal workspace with tabs, panes, and floating layouts.
+- **tmux.** Terminal multiplexer with session persistence.
+
+### Command-line utilities
+- **eza.** Modern `ls` with colors, git status, and tree view.
+- **bat.** Syntax-highlighted file viewer with automatic paging and git integration.
+- **fd.** Fast, user-friendly alternative to `find`.
+- **ripgrep.** Recursive regex text search respecting `.gitignore`.
+- **zoxide.** Smarter `cd` tracking frequently visited paths.
+- **fzf.** General-purpose fuzzy finder.
+- **dust.** Graphical disk usage visualizer.
+- **btop.** Terminal system resource monitor.
+- **yazi.** Terminal file manager with async I/O and image previews.
+
+### Editors and git
+- **Micro.** Terminal editor with intuitive keybindings and mouse support.
+- **GitUI.** Fast git terminal interface written in Rust.
+- **lazygit.** Terminal UI for git commands with visual branch management.
+
+### Terminal emulators and fonts
+- **Ghostty.** GPU-accelerated terminal emulator with native tabs and font features.
+- **JetBrainsMono Nerd Font.** Automated installer for developer fonts and powerline glyphs with native package mapping and direct archive fallback.
+
+### Theming
+- **Catppuccin.** Soothing pastel theme preset tailored across all terminal tools.
+- **Everforest.** Natural warm green theme preset tailored across all terminal tools.
+- **Tokyo Night.** Clean dark neon theme preset tailored across all terminal tools.
+
+### Productivity and search
+- **fastfetch.** Maintained system information display styled with active theme accents.
+- **navi.** Interactive cheatsheet browser using fzf.
+- **atuin.** Searchable SQLite shell history sync.
+- **xh.** User-friendly HTTP client with concise syntax and colors.
+
+---
+
+## Supported platforms and package managers
+
+Term1zz supports both Linux and macOS with automatic detection of packages and non-destructive privilege escalation:
+
+| Platform / Distro | Package Manager | Escalation |
+| --- | --- | --- |
+| **macOS** | Homebrew (`brew`) | None (Homebrew standard) |
+| **AerynOS** | `moss` | `run0` / `sudo` |
+| **Arch Linux** | `pacman` | `sudo` / `run0` / `doas` |
+| **Fedora** | `dnf` | `sudo` / `run0` / `doas` |
+| **Ubuntu / Debian** | `apt-get` | `sudo` / `run0` / `doas` |
+| **Alpine Linux** | `apk` | `sudo` / `doas` |
+| **openSUSE** | `zypper` | `sudo` / `run0` / `doas` |
+| **Void Linux** | `xbps-install` | `sudo` / `doas` |
+
+---
+
+## Dotfiles
+
+Configurations live in `stow/` and mirror the user home directory:
 
 ```
 stow/
-├── fastfetch/  → ~/.config/fastfetch/config.jsonc
-├── fish/       → ~/.config/fish/{config.fish, themes/, functions/, ...}
-├── ghostty/    → ~/.config/ghostty/config
-├── micro/      → ~/.config/micro/settings.json
-├── navi/       → ~/.config/navi/den1zz.cheat
-├── starship/   → ~/.config/starship.toml
-└── zellij/     → ~/.config/zellij/config.kdl
+├── fastfetch/         → ~/.config/fastfetch/config.jsonc
+├── fish/              → ~/.config/fish/{config.fish, conf.d/, functions/, completions/}
+├── ghostty/           → ~/.config/ghostty/config
+├── micro/             → ~/.config/micro/settings.json
+├── navi/              → ~/.config/navi/den1zz.cheat
+├── nushell/           → ~/.config/nushell/{config.nu, env.nu}
+├── starship/          → ~/.config/starship.toml
+├── theme-catppuccin/  → ~/.config/{ghostty,starship.toml,zellij,micro,bat,fastfetch,fish}
+├── theme-everforest/  → ~/.config/{ghostty,starship.toml,zellij,micro,bat,fastfetch,fish}
+├── theme-tokyonight/  → ~/.config/{ghostty,starship.toml,zellij,micro,bat,fastfetch,fish}
+├── zellij/            → ~/.config/zellij/config.kdl
+└── zsh/               → ~/.zshrc
 ```
 
----
-
-## 🛠️ Included Configurations
-
-| Component | Choice | Notes |
-|-----------|--------|-------|
-| **Shell** | [Fish](https://fishshell.com) | Atuin · zoxide · fzf integrations |
-| **Prompt** | [Starship](https://starship.rs) | Catppuccin Frappé styling |
-| **Terminal** | [Ghostty](https://ghostty.org) | Fast, native emulator |
-| **Multiplexer** | [Zellij](https://zellij.dev) | Catppuccin Mocha theme, Alt-key bindings |
-| **Editor** | [Micro](https://micro-editor.github.io) | Terminal editor with mouse support |
-| **GUI Editor** | [Zed](https://zed.dev) | High-performance code editor |
-| **Theming** | [Catppuccin](https://catppuccin.com) | Soothing pastel scheme — everywhere |
+Term1zz creates symlinks from `$HOME` to these files. If a file already exists at the destination, Term1zz moves it to a timestamped directory in `~/.local/state/term1zz/backups/`.
 
 ---
 
-## 💛 Credits & Acknowledgements
+## Contributing
 
-These configs are built on the shoulders of a bunch of great open-source projects. Full credit to their authors.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflows, package mapping guidelines, and container test commands.
 
-### 🖥️ Environment
+---
 
-| Project | What it does |
-|---------|-------------|
-| [Fish Shell](https://fishshell.com) | Feature-rich, friendly interactive shell |
-| [Starship](https://starship.rs) | Cross-shell prompt |
-| [Ghostty](https://ghostty.org) | Fast, native terminal emulator |
-| [Zellij](https://zellij.dev) | Modern terminal multiplexer with a plugin system |
-| [Micro](https://micro-editor.github.io) | Modern terminal text editor — intuitive & mouse-friendly |
-| [Zed](https://zed.dev) | High-performance code editor |
-| [Catppuccin](https://catppuccin.com) | Soothing pastel color scheme (used everywhere) |
+## License
 
-### 🔧 CLI Toolchain
-
-| Project | Replaces | What it does |
-|---------|----------|-------------|
-| [eza](https://github.com/eza-community/eza) | `ls` | Modern file lister with icons & git info |
-| [bat](https://github.com/sharkdp/bat) | `cat` / `less` | Syntax-highlighted file viewer |
-| [fd](https://github.com/sharkdp/fd) | `find` | Fast, user-friendly file finder |
-| [ripgrep](https://github.com/BurntSushi/ripgrep) | `grep` | Blazing-fast recursive search |
-| [dust](https://github.com/bootandy/dust) | `du` | Intuitive disk usage viewer |
-| [btop](https://github.com/aristocratos/btop) | `top` | Resource monitor with a beautiful TUI |
-| [zoxide](https://github.com/ajeetdsouza/zoxide) | `cd` | Smarter directory jumping |
-| [fzf](https://github.com/junegunn/fzf) | — | General-purpose fuzzy finder |
-| [Atuin](https://github.com/atuinsh/atuin) | shell history | Synced, searchable shell history |
-| [uutils coreutils](https://github.com/uutils/coreutils) | GNU coreutils | Dynamically maps `uu-*` binaries — falls back to system coreutils if not installed |
-| [bfetch](https://github.com/Mjoyufull/bfetch) | [fastfetch](https://github.com/fastfetch-cli/fastfetch) | System fetch on shell startup — falls back to fastfetch if not installed |
-| [navi](https://github.com/denisidoro/navi) | cheatsheets | Interactive cheatsheet searcher using `fzf` |
-| [xh](https://github.com/ducaale/xh) | `curl` / `httpie` | Fast, user-friendly HTTP client |
-| [gitui](https://github.com/extrawurst/gitui) | `lazygit` | Blazing-fast terminal UI for Git |
-
-### 🎥 Media
-
-| Project | What it does |
-|---------|-------------|
-| [streamlink](https://streamlink.github.io) | Extracts streams from sites like Twitch |
-| [mpv](https://mpv.io) | Minimal, powerful media player |
-| [ani-cli](https://github.com/pystardust/ani-cli) | Search and stream anime from the terminal |
-
-<div align="center">
-
-*Feel free to steal, fork, or adapt anything here.*
-
-</div>
+[MIT](LICENSE)

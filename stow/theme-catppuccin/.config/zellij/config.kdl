@@ -1,0 +1,88 @@
+// ──────────────────────────────────────────────
+// Zellij Configuration — Catppuccin Mocha
+// Part of Term1zz (https://codeberg.org/Den1zz/Term1zz)
+// ──────────────────────────────────────────────
+
+// ── Theme: Catppuccin Mocha ────────────────────
+theme "catppuccin-mocha"
+
+themes {
+    catppuccin-mocha {
+        bg      "#1e1e2e"  // base
+        fg      "#cdd6f4"  // text
+        red     "#f38ba8"
+        green   "#a6e3a1"
+        blue    "#89b4fa"
+        yellow  "#f9e2af"
+        magenta "#cba6f7"  // mauve
+        orange  "#fab387"  // peach
+        cyan    "#94e2d5"  // teal
+        black   "#181825"  // mantle
+        white   "#cdd6f4"  // text
+    }
+}
+
+// ── General Settings ───────────────────────────
+default_shell "fish"
+default_layout "default"
+pane_frames true
+auto_layout true
+on_force_close "detach"
+simplified_ui false
+mouse_mode true
+scroll_buffer_size 50000
+copy_on_select true
+scrollback_editor "micro"
+mirror_session false
+default_mode "normal"
+
+// ── UI Appearance ──────────────────────────────
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name false
+    }
+}
+
+// ── Keybindings ────────────────────────────────
+// Built on Zellij defaults with quality-of-life tweaks.
+// Leader key: Ctrl-b (familiar for tmux users)
+
+keybinds clear-defaults=false {
+    shared_except "locked" {
+        // Quick actions
+        bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+
+        // Pane resizing with Alt+Shift
+        bind "Alt H" { Resize "Increase Left"; }
+        bind "Alt L" { Resize "Increase Right"; }
+        bind "Alt J" { Resize "Increase Down"; }
+        bind "Alt K" { Resize "Increase Up"; }
+
+        // New pane splits
+        bind "Alt d" { NewPane "Down"; }
+        bind "Alt r" { NewPane "Right"; }
+
+        // Tab management
+        bind "Alt t" { NewTab; }
+        bind "Alt w" { CloseTab; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
+
+        // Floating pane toggle
+        bind "Alt f" { ToggleFloatingPanes; }
+
+        // Close current pane
+        bind "Alt x" { CloseFocus; }
+    }
+}

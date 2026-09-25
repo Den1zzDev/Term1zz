@@ -1,0 +1,15 @@
+# Ghostty Config - Catppuccin Mocha Mauve Edition
+
+# Use the updated theme name
+theme = Catppuccin Mocha
+
+# Custom Mauve Accents
+cursor-color = #cba6f7
+selection-background = #cba6f7
+selection-foreground = #1e1e2e
+
+# Recommendations for CachyOS/KDE
+window-decoration = true
+window-theme = dark
+font-family = "JetBrainsMono Nerd Font"
+font-size = 11

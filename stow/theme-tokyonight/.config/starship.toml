@@ -1,0 +1,130 @@
+# ── Prompt layout ──────────────────────────────────────────────
+format = """
+[](fg:#1a1b26)\
+$os\
+$username\
+[](bg:#24283b fg:#1a1b26)\
+$directory\
+[](fg:#24283b bg:#2f3549)\
+$git_branch\
+$git_status\
+[](fg:#2f3549 bg:#1a1b26)\
+$nodejs\
+$python\
+$rust\
+$golang\
+$java\
+$docker_context\
+[](fg:#1a1b26)\
+$fill\
+$cmd_duration\
+$time\
+$line_break\
+$character"""
+
+[fill]
+symbol = " "
+
+[os]
+disabled = false
+style = "bg:#1a1b26 fg:#bb9af7"
+
+[os.symbols]
+Alpine = " "
+Android = " "
+Arch = "󰌽 "
+Artix = " "
+CachyOS = "󰌽 "
+CentOS = " "
+Debian = "󰌚 "
+EndeavourOS = " "
+Fedora = "󰌛 "
+FreeBSD = " "
+Gentoo = "󰌨 "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mint = "󰌭 "
+NixOS = " "
+openSUSE = " "
+Pop = " "
+Ubuntu = " "
+Unknown = "󰌶 "
+
+[username]
+show_always  = true
+style_user   = "bg:#1a1b26 fg:#7aa2f7 bold"
+style_root   = "bg:#1a1b26 fg:#f7768e bold"
+format       = '[ $user ]($style)'
+
+[directory]
+style            = "bg:#24283b fg:#7dcfff bold"
+format           = "[ 󰉋 $path ]($style)"
+truncation_length = 3
+truncate_to_repo = true
+read_only        = " 󰌾"
+read_only_style  = "bg:#24283b fg:#f7768e"
+
+[git_branch]
+style  = "bg:#2f3549 fg:#9ece6a bold"
+format = '[[ $symbol $branch ]($style)]'
+symbol = "󰊢 "
+
+[git_status]
+style     = "bg:#2f3549 fg:#ff9e64"
+format    = '([$all_status$ahead_behind ]($style))'
+conflicted = "󱞇 "
+ahead      = "⇡${count} "
+behind     = "⇣${count} "
+diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
+untracked  = "? "
+stashed    = "󰿢 "
+modified   = "! "
+staged     = "+ "
+deleted    = "✘ "
+
+[nodejs]
+style   = "bg:#1a1b26 fg:#9ece6a"
+format  = '[ $symbol($version) ]($style)'
+symbol  = " "
+
+[python]
+style   = "bg:#1a1b26 fg:#e0af68"
+format  = '[ $symbol($version) ]($style)'
+symbol  = " "
+
+[rust]
+style  = "bg:#1a1b26 fg:#ff9e64"
+format = '[ $symbol($version) ]($style)'
+symbol = " "
+
+[golang]
+style  = "bg:#1a1b26 fg:#7dcfff"
+format = '[ $symbol($version) ]($style)'
+symbol = " "
+
+[java]
+style  = "bg:#1a1b26 fg:#f7768e"
+format = '[ $symbol($version) ]($style)'
+symbol = " "
+
+[docker_context]
+style  = "bg:#1a1b26 fg:#7aa2f7"
+format = '[ $symbol$context ]($style)'
+symbol = "󰡨 "
+
+[cmd_duration]
+min_time = 2_000
+style    = "fg:#ff9e64"
+format   = '[$symbol$duration]($style) '
+symbol   = "󰔚 "
+
+[time]
+disabled    = false
+time_format = "%R"
+style       = "fg:#565f89"
+format      = '[$time]($style)'
+
+[character]
+success_symbol = "[❯](bold #9ece6a)"
+error_symbol   = "[❯](bold #f7768e)"

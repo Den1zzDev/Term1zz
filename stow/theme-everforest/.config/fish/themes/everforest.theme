@@ -1,0 +1,28 @@
+# name: 'Everforest Dark'
+# url: 'https://github.com/sainnhe/everforest'
+
+fish_color_normal d3c6aa
+fish_color_command a7c080
+fish_color_param d3c6aa
+fish_color_keyword e67e80
+fish_color_quote dbbc7f
+fish_color_redirection d699b6
+fish_color_end e69875
+fish_color_comment 859289
+fish_color_error e67e80
+fish_color_gray 859289
+fish_color_selection --background=3a515d
+fish_color_search_match --background=3a515d
+fish_color_option a7c080
+fish_color_operator 7fbbb3
+fish_color_escape e69875
+fish_color_autosuggestion 859289
+fish_color_cancel e67e80
+fish_color_cwd dbbc7f
+fish_color_user 7fbbb3
+fish_color_host 83c092
+fish_color_host_remote a7c080
+fish_color_status e67e80
+fish_pager_color_progress 859289
+fish_pager_color_prefix 7fbbb3
+fish_pager_color_completion d3c6aa
