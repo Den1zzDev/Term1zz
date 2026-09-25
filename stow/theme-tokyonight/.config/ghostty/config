@@ -1,0 +1,10 @@
+# Ghostty Config - Tokyo Night
+theme = TokyoNight
+cursor-color = #7aa2f7
+selection-background = #7aa2f7
+selection-foreground = #1a1b26
+
+window-decoration = true
+window-theme = dark
+font-family = "JetBrainsMono Nerd Font"
+font-size = 11

@@ -1,0 +1,10 @@
+# Ghostty Config - Everforest Dark
+theme = Everforest Dark Hard
+cursor-color = #a7c080
+selection-background = #a7c080
+selection-foreground = #2d353b
+
+window-decoration = true
+window-theme = dark
+font-family = "JetBrainsMono Nerd Font"
+font-size = 11

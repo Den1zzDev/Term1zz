@@ -1,0 +1,53 @@
+{
+    "colorscheme": "catppuccin-mocha",
+
+    "mouse": true,
+    "clipboard": "external",
+    "paste": true,
+
+    "autoindent": true,
+    "tabsize": 4,
+    "tabstospaces": true,
+    "smartpaste": true,
+    "autoclose": true,
+
+    "ruler": true,
+    "colorcolumn": 80,
+    "cursorline": true,
+    "diffgutter": true,
+    "statusline": true,
+    "scrollbar": true,
+    "scrollmargin": 5,
+    "scrollspeed": 3,
+
+    "savecursor": true,
+    "saveundo": true,
+    "autosave": 0,
+    "keepautoindent": true,
+    "eofnewline": true,
+    "rmtrailingws": true,
+
+    "softwrap": false,
+    "wordwrap": false,
+    "splitbottom": true,
+    "splitright": true,
+
+    "syntax": true,
+    "hlsearch": true,
+    "hltaberrors": true,
+    "hltrailingws": true,
+    "matchbrace": true,
+    "matchbraceleft": true,
+
+    "linter": true,
+    "literate": false,
+    "multiopen": "tab",
+
+    "mkparents": true,
+    "basename": false,
+    "relativeruler": false,
+    "sucmd": "sudo",
+    "pluginchannels": [
+        "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
+    ]
+}

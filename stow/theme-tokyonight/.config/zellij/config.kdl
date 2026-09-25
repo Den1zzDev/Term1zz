@@ -1,0 +1,56 @@
+// ──────────────────────────────────────────────
+// Zellij Configuration — Tokyo Night
+// Part of Term1zz
+// ──────────────────────────────────────────────
+
+theme "tokyo-night"
+
+themes {
+    tokyo-night {
+        bg      "#1a1b26"
+        fg      "#c0caf5"
+        red     "#f7768e"
+        green   "#9ece6a"
+        blue    "#7aa2f7"
+        yellow  "#e0af68"
+        magenta "#bb9af7"
+        orange  "#ff9e64"
+        cyan    "#7dcfff"
+        black   "#15161e"
+        white   "#c0caf5"
+    }
+}
+
+default_shell "fish"
+default_layout "default"
+pane_frames true
+auto_layout true
+on_force_close "detach"
+simplified_ui false
+mouse_mode true
+scroll_buffer_size 50000
+copy_on_select true
+scrollback_editor "micro"
+mirror_session false
+default_mode "normal"
+
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name false
+    }
+}
+
+keybinds clear-defaults=false {
+    shared_except "locked" {
+        bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt n" { NewPane; }
+        bind "Alt t" { NewTab; }
+        bind "Alt w" { CloseFocus; }
+    }
+}
