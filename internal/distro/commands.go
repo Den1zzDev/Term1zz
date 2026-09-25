@@ -1,6 +1,9 @@
 package distro
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // InstallCommand builds the command slice to install one or more packages non-interactively.
 func (i Info) InstallCommand(packages []string) []string {
@@ -9,7 +12,7 @@ func (i Info) InstallCommand(packages []string) []string {
 	}
 
 	var cmd []string
-	if !i.IsRoot && i.Escalator != "" {
+	if !i.IsRoot && i.Escalator != "" && i.PM != PMBrew {
 		if i.Escalator == "run0" {
 			// run0 --background="" ensures no colored background block in modern systemd
 			cmd = append(cmd, "run0", "--background=")
@@ -42,7 +45,9 @@ func (i Info) InstallCommand(packages []string) []string {
 		cmd = append(cmd, packages...)
 	case PMBrew:
 		cmd = append(cmd, "brew", "install")
-		cmd = append(cmd, packages...)
+		for _, p := range packages {
+			cmd = append(cmd, strings.Fields(p)...)
+		}
 	default:
 		return nil
 	}
@@ -59,5 +64,15 @@ func (i Info) FormatSummary() string {
 	if name == "" {
 		name = i.OS
 	}
-	return fmt.Sprintf("%s (%s) | Package manager: %s | Elevation: %s", name, i.Arch, i.PM, i.Escalator)
+	escalation := i.Escalator
+	if escalation == "" {
+		if i.PM == PMBrew {
+			escalation = "none (brew)"
+		} else if i.IsRoot {
+			escalation = "root"
+		} else {
+			escalation = "none"
+		}
+	}
+	return fmt.Sprintf("%s (%s) | Package manager: %s | Elevation: %s", name, i.Arch, i.PM, escalation)
 }

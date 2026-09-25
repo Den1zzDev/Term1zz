@@ -1,10 +1,10 @@
 #!/bin/sh
 set -eu
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
 # Term1zz — POSIX Installer & Bootstrap
 # https://github.com/Den1zzDev/Term1zz
-# ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
 
 REPO="Den1zzDev/Term1zz"
 INSTALL_DIR="${HOME}/.local/share/term1zz"
@@ -124,6 +124,8 @@ install_go_toolchain() {
         ${ESCALATE} zypper --non-interactive install go
     elif command -v brew >/dev/null 2>&1; then
         brew install go
+    elif [ "${OS}" = "darwin" ]; then
+        fail "Homebrew not found. Please install Homebrew from https://brew.sh first to build Term1zz on macOS."
     else
         fail "Could not find a supported package manager to install Go."
     fi
@@ -135,6 +137,18 @@ banner
 OS="$(detect_os)"
 ARCH="$(detect_arch)"
 info "Detected platform: ${OS}/${ARCH}"
+
+# Ensure macOS standard Homebrew paths are in PATH
+if [ "${OS}" = "darwin" ]; then
+    for brew_path in /opt/homebrew/bin /usr/local/bin; do
+        if [ -d "${brew_path}" ]; then
+            case ":${PATH}:" in
+                *:"${brew_path}":*) ;;
+                *) export PATH="${brew_path}:${PATH}" ;;
+            esac
+        fi
+    done
+fi
 
 # Determine whether running from inside a local checkout
 SCRIPT_DIR="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"

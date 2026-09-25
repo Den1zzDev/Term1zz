@@ -371,7 +371,6 @@ func Items() []Item {
 				distro.PMPacman: "lazygit",
 				distro.PMDnf:    "lazygit",
 				distro.PMApt:    "lazygit",
-				distro.PMApk:    "lazygit",
 				distro.PMZypper: "lazygit",
 				distro.PMBrew:   "lazygit",
 			},
@@ -391,6 +390,7 @@ func Items() []Item {
 			Packages: map[distro.PackageManager]string{
 				distro.PMMoss:   "ghostty",
 				distro.PMPacman: "ghostty",
+				distro.PMBrew:   "--cask ghostty",
 			},
 			FallbackRepo:    "ghostty-org/ghostty",
 			BinaryName:      "ghostty",
@@ -406,9 +406,13 @@ func Items() []Item {
 				distro.PMPacman: "ttf-jetbrains-mono-nerd",
 				distro.PMDnf:    "jetbrains-mono-fonts-all",
 				distro.PMApt:    "fonts-jetbrains-mono",
-				distro.PMBrew:   "font-jetbrains-mono-nerd-font",
+				distro.PMBrew:   "--cask font-jetbrains-mono-nerd-font",
 			},
-			CustomScript: "FONT_DIR=\"${HOME}/.local/share/fonts/JetBrainsMono\"; " +
+			CustomScript: "if [ \"$(uname)\" = \"Darwin\" ]; then " +
+				"FONT_DIR=\"${HOME}/Library/Fonts\"; " +
+				"else " +
+				"FONT_DIR=\"${HOME}/.local/share/fonts/JetBrainsMono\"; " +
+				"fi; " +
 				"mkdir -p \"${FONT_DIR}\"; " +
 				"if [ ! -f \"${FONT_DIR}/JetBrainsMonoNerdFont-Regular.ttf\" ]; then " +
 				"TMP_F=\"$(mktemp -d 2>/dev/null || mktemp -d -t 'font')\"; " +
@@ -418,7 +422,7 @@ func Items() []Item {
 				"if command -v fc-cache >/dev/null 2>&1; then fc-cache -f \"${FONT_DIR}\" >/dev/null 2>&1 || true; fi; " +
 				"fi",
 			DefaultSelected:  true,
-			PostInstallNotes: "Installs into ~/.local/share/fonts and refreshes the font cache.",
+			PostInstallNotes: "Installs into user font directory and refreshes cache.",
 		},
 
 		// ─────────────────────────────────────────────

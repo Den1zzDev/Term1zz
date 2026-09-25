@@ -29,7 +29,7 @@ type Info struct {
 	DistroID   string
 	DistroName string
 	PM         PackageManager
-	Escalator  string // "run0", "sudo", "doas", or empty if root
+	Escalator  string // "run0", "sudo", "doas", or empty if root / brew
 	IsRoot     bool
 	HomeDir    string
 	ConfigDir  string
@@ -50,11 +50,31 @@ func Detect() Info {
 		info.ConfigDir = info.HomeDir + "/.config"
 	}
 
-	parseOSRelease(&info)
-	info.PM = detectPackageManager(info.DistroID)
-	info.Escalator = detectEscalator(info.DistroID, info.IsRoot)
+	if info.OS == "darwin" {
+		info.DistroID = "macos"
+		info.DistroName = "macOS"
+		ensureDarwinBrewPath()
+		info.PM = detectPackageManager("macos")
+		info.Escalator = "" // Homebrew prohibits running with sudo
+	} else {
+		parseOSRelease(&info)
+		info.PM = detectPackageManager(info.DistroID)
+		info.Escalator = detectEscalator(info.DistroID, info.IsRoot)
+	}
 
 	return info
+}
+
+func ensureDarwinBrewPath() {
+	path := os.Getenv("PATH")
+	for _, bp := range []string{"/opt/homebrew/bin", "/usr/local/bin"} {
+		if _, err := os.Stat(bp + "/brew"); err == nil {
+			if !strings.Contains(path, bp) {
+				path = bp + ":" + path
+				_ = os.Setenv("PATH", path)
+			}
+		}
+	}
 }
 
 func parseOSRelease(info *Info) {
@@ -99,6 +119,10 @@ func parseOSRelease(info *Info) {
 func detectPackageManager(distroID string) PackageManager {
 	// First check distro ID hints
 	switch distroID {
+	case "macos":
+		if pathExists("brew") || pathExists("/opt/homebrew/bin/brew") || pathExists("/usr/local/bin/brew") {
+			return PMBrew
+		}
 	case "aerynos", "serpent":
 		if pathExists("moss") {
 			return PMMoss
